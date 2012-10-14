@@ -33,18 +33,5 @@ namespace OwnGame.Tests
             //Assert
             Assert.IsTrue(viewModel.QuestionGroupList.Count == questionGroupFakeList.Count);
         }
-
-        ////[TestMethod]
-        ////public void TestWhenQuestionSelectedThenMarkedAsAnswered()
-        ////{
-        ////    //Assign
-        ////    Mock<IQuestionService> serviceMoq = new Mock<IQuestionService>();
-        ////    QuestionTableViewModel viewModel = new QuestionTableViewModel(serviceMoq.Object);
-
-        ////    //Act
-        ////    viewModel.SelectQuestionCommand.Execute(30);
-
-        ////    //Assert
-        ////}
     }
 }

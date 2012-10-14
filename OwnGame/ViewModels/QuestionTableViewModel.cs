@@ -20,7 +20,7 @@ namespace OwnGame.ViewModels
             QuestionGroupList = new ObservableCollection<QuestionGroupViewModel>();
             LoadDataCommand = new LoadQuestionGroupCommand(this, _questionService);
 
-            //if (IsInDesignMode)
+            if (IsInDesignMode)
             {
                 LoadDataCommand.Execute();
                 LoadDataCommand.Execute();

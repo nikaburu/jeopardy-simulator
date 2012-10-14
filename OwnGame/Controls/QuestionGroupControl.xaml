@@ -8,7 +8,7 @@
     <ItemsControl ItemsSource="{Binding}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <Grid DataContext="{Binding}" Height="68.3733333333333">
+                <Grid>
                     <TextBlock Text="{Binding Name}" Margin="20,20,0,19.999" FontSize="21.333" Foreground="#FFF3F3DF" FontWeight="Bold" HorizontalAlignment="Left" d:LayoutOverrides="Height" />
                     <ItemsControl ItemsSource="{Binding Questions}" Foreground="#FF191B7C" Margin="182.236,10.373,0,7.999" d:LayoutOverrides="Height">
                         <ItemsControl.ItemsPanel>
@@ -26,7 +26,7 @@
                                             <GradientStop Color="#FFA8D89B"/>
                                         </RadialGradientBrush>
                                     </Border.Background>
-                                    <TextBlock x:Name="questionCostTextBlock" Text="{Binding Cost}" RenderTransformOrigin="0.5,0.5" 
+                                    <TextBlock x:Name="questionCostTextBlock" Text="{Binding Model.Cost}" RenderTransformOrigin="0.5,0.5" 
                 							FontSize="21.333" FontWeight="Bold" 
                 							ToolTip="{Binding Text, ElementName=questionCostTextBlock}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 </Border>

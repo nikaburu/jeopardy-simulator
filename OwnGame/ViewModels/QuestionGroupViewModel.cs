@@ -5,11 +5,11 @@ namespace OwnGame.ViewModels
 {
     public class QuestionGroupViewModel : ViewModelBase
     {
-        public QuestionGroup QuestionGroup { get; private set; }
+        public QuestionGroup Model { get; private set; }
 
         public QuestionGroupViewModel(QuestionGroup questionGroup)
         {
-            QuestionGroup = questionGroup;
+            Model = questionGroup;
         }
     }
 }

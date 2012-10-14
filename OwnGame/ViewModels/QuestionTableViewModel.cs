@@ -17,7 +17,14 @@ namespace OwnGame.ViewModels
             _questionService = questionService;
 
             QuestionGroupList = new ObservableCollection<QuestionGroupViewModel>();
-            LoadDataCommand = new LoadQuestionGroupCommand(this, questionService);
+            LoadDataCommand = new LoadQuestionGroupCommand(this, _questionService);
+
+            if (ViewModelBase.IsInDesignModeStatic)
+            {
+                LoadDataCommand.Execute();
+                LoadDataCommand.Execute();
+                LoadDataCommand.Execute();
+            }
         }
 
         public ObservableCollection<QuestionGroupViewModel> QuestionGroupList { get; set; }

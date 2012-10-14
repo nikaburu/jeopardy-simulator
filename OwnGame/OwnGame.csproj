@@ -72,6 +72,7 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandBase`.cs" />
     <Compile Include="Commands\LoadQuestionGroupCommand.cs" />
+    <Compile Include="Models\Question.cs" />
     <Compile Include="Models\QuestionGroup.cs" />
     <Compile Include="Servicies\DesignDataQuestionService.cs" />
     <Compile Include="Servicies\IQuestionService.cs" />

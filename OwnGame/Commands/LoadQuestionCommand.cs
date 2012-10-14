@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
 using OwnGame.Controls.ViewModels;
+using OwnGame.Models;
 using OwnGame.Servicies;
 using OwnGame.ViewModels;
 
@@ -20,7 +22,14 @@ namespace OwnGame.Commands
         private void LoadQuestion(int questionCost)
         {
             QuestionViewModel question = _viewModel.Questions.First(rec => rec.Model.Cost == questionCost);
+            if (question.IsAnswered)
+            {
+                return;
+            }
+
             question.IsAnswered = true;
+
+            Messenger.Default.Send(new GenericMessage<Question>(question.Model));
         }
         
         #region Overrides of CommandBase<int>

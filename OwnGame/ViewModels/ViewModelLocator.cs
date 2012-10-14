@@ -20,16 +20,16 @@ namespace OwnGame.ViewModels
                 SimpleIoc.Default.Register<IQuestionService, DesignDataQuestionService>(); //todo change in production
             }
             
-            SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<QuestionTableViewModel>();
             SimpleIoc.Default.Register<CommandResultsViewModel>();
+            SimpleIoc.Default.Register<QuestionProcessViewModel>();
         }
 
-        public MainViewModel Main
+        public QuestionProcessViewModel QuestionProcess
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
+                return ServiceLocator.Current.GetInstance<QuestionProcessViewModel>();
             }
         }
 

@@ -16,7 +16,7 @@ namespace OwnGame.Tests
         public void TestWhenCreatedThenLoadQuestionCommandContainsCorrectGroupId()
         {
             //Assign
-            QuestionGroup group = new QuestionGroup() {Id = 10};
+            QuestionGroup group = new QuestionGroup(10);
             
             //Act
             QuestionGroupViewModel viewModel = new QuestionGroupViewModel(group);
@@ -29,7 +29,7 @@ namespace OwnGame.Tests
         public void TestWhenLoadQuestionThenQuestionMarkAsAnswered()
         {
             //Assign
-            QuestionGroupViewModel viewModel = new QuestionGroupViewModel(new QuestionGroup(new List<Question>()
+            QuestionGroupViewModel viewModel = new QuestionGroupViewModel(new QuestionGroup(10, new List<Question>()
                                                                                                 {
                                                                                                     new Question()
                                                                                                         {

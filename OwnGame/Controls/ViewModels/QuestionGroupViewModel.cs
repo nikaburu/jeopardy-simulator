@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using OwnGame.Commands;
+using OwnGame.Messages;
 using OwnGame.Models;
 
 namespace OwnGame.Controls.ViewModels
@@ -15,6 +17,16 @@ namespace OwnGame.Controls.ViewModels
         {
             _model = questionGroup;
             LoadQuestionCommand = new LoadQuestionCommand(this, _model.Id);
+
+            Messenger.Default.Register<CancelQuestionMessage>(this, OnUnloadQuestion);
+        }
+
+        private void OnUnloadQuestion(CancelQuestionMessage message)
+        {
+            if (message.Content.QuestionGroupId == _model.Id)
+            {
+                Questions.First(rec => rec.Model == message.Content).IsAnswered = false;
+            }
         }
 
         public int Id { get { return _model.Id; } }

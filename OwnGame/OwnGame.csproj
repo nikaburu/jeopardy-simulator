@@ -74,24 +74,30 @@
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandBase`.cs" />
+    <Compile Include="Commands\CancelQuestionCommand.cs" />
     <Compile Include="Commands\LoadQuestionCommand.cs" />
     <Compile Include="Commands\LoadQuestionGroupCommand.cs" />
     <Compile Include="Controls\QuestionGroupControl.xaml.cs">
       <DependentUpon>QuestionGroupControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ViewModels\QuestionViewModel.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Messages\CancelQuestionMessage.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\QuestionGroup.cs" />
     <Compile Include="Servicies\DesignDataQuestionService.cs" />
     <Compile Include="Servicies\IQuestionService.cs" />
     <Compile Include="Models\CommandResult.cs" />
     <Compile Include="ViewModels\CommandResultsViewModel.cs" />
+    <Compile Include="ViewModels\QuestionProcessViewModel.cs" />
     <Compile Include="ViewModels\QuestionTableViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Controls\ViewModels\QuestionGroupViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\CommandResultsView.xaml.cs">
       <DependentUpon>CommandResultsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuestionProcessView.xaml.cs">
+      <DependentUpon>QuestionProcessView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\QuestionTableView.xaml.cs">
       <DependentUpon>QuestionTableView.xaml</DependentUpon>
@@ -114,6 +120,10 @@
     </Compile>
     <Page Include="Views\CommandResultsView.xaml">
       <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuestionProcessView.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\QuestionTableView.xaml">

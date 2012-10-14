@@ -1,9 +1,10 @@
 ﻿<Window x:Class="OwnGame.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Views="clr-namespace:OwnGame.Views" Title="MainWindow" Height="350" Width="525">
-    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200*" />
+            <ColumnDefinition Width="150*" />
             <ColumnDefinition Width="150" />
         </Grid.ColumnDefinitions>
         <Grid.Background>
@@ -12,8 +13,9 @@
     			<GradientStop Color="#FF99C1F7" Offset="1"/>
     		</LinearGradientBrush>
     	</Grid.Background>
-        <Views:QuestionTableView />
-        <Border BorderBrush="Black" BorderThickness="3" Grid.Column="1">
+        <Views:QuestionTableView Grid.Column="0" />
+        <Views:QuestionProcessView Grid.Column="1" />
+    	<Border BorderBrush="Black" BorderThickness="3" Grid.Column="2">
             <Views:CommandResultsView />
         </Border>
     </Grid>

@@ -71,13 +71,11 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button x:Name="questionButton" Content="{Binding Model.Cost}"  
-                							ToolTip="{Binding Text, ElementName=questionButton}"
-                                            Style="{StaticResource QuestionButton}"
-                                            Command="{Binding Path=DataContext.LoadQuestionCommand, 
-                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" 
-                                        CommandParameter="{Binding Model.Cost}"
-                                             />
+                                <Button Content="{Binding Model.Cost}"  
+                						ToolTip="{Binding Text}"
+                                        Style="{StaticResource QuestionButton}"
+                                        Command="{Binding Path=DataContext.LoadQuestionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" 
+                                        CommandParameter="{Binding Model.Cost}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

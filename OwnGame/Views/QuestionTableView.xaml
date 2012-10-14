@@ -7,7 +7,7 @@
         d:DesignWidth="600" d:DesignHeight="300"
         DataContext="{Binding QuestionTable, Source={StaticResource Locator}}">
     <StackPanel>
-        <Button Content="Load data from datasource" Command="{Binding LoadDataCommand}" Margin="0,0,0,15" Width="150" Height="30" />
+        <!--<Button Content="Load data from datasource" Command="{Binding LoadDataCommand}" Margin="0,0,0,15" Height="30" HorizontalAlignment="Left" Width="200" />-->
         <ItemsControl ItemsSource="{Binding QuestionGroupList}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>

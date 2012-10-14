@@ -4,6 +4,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using OwnGame.Commands;
+using OwnGame.Controls.ViewModels;
 using OwnGame.Servicies;
 
 namespace OwnGame.ViewModels

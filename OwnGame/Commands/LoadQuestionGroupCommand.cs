@@ -1,4 +1,5 @@
-﻿using OwnGame.Servicies;
+﻿using OwnGame.Controls.ViewModels;
+using OwnGame.Servicies;
 using OwnGame.ViewModels;
 
 namespace OwnGame.Commands

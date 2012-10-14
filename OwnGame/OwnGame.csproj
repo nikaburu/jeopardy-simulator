@@ -76,10 +76,15 @@
     <Compile Include="Models\QuestionGroup.cs" />
     <Compile Include="Servicies\DesignDataQuestionService.cs" />
     <Compile Include="Servicies\IQuestionService.cs" />
+    <Compile Include="Models\CommandResult.cs" />
+    <Compile Include="ViewModels\CommandResultsViewModel.cs" />
     <Compile Include="ViewModels\QuestionTableViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\QuestionGroupViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\CommandResultsView.xaml.cs">
+      <DependentUpon>CommandResultsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\QuestionTableView.xaml.cs">
       <DependentUpon>QuestionTableView.xaml</DependentUpon>
     </Compile>
@@ -95,6 +100,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\CommandResultsView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\QuestionTableView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>

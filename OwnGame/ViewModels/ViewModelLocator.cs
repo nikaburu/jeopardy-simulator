@@ -22,6 +22,7 @@ namespace OwnGame.ViewModels
             
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<QuestionTableViewModel>();
+            SimpleIoc.Default.Register<CommandResultsViewModel>();
         }
 
         public MainViewModel Main
@@ -39,6 +40,13 @@ namespace OwnGame.ViewModels
                 return ServiceLocator.Current.GetInstance<QuestionTableViewModel>();
             }
         }
-        
+
+        public CommandResultsViewModel CommandResults
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CommandResultsViewModel>();
+            }
+        }
     }
 }

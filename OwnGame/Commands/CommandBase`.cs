@@ -13,6 +13,10 @@ namespace OwnGame.Commands
             {
                 Execute((T)parameter);
             }
+            else
+            {
+                Execute((T)Convert.ChangeType(parameter, typeof(T)));
+            }
         }
 
         bool ICommand.CanExecute(object parameter)

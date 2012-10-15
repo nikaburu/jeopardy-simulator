@@ -38,7 +38,7 @@
                         			<ei:GoToStateAction StateName="Answered"/>
                         		</ei:DataTrigger>
                         	</i:Interaction.Triggers>
-                            <Border x:Name="border" Width="50" Height="50" Cursor="Hand" >
+                            <Border x:Name="border" Width="Auto" Height="Auto" Cursor="Hand" >
                                 <Border.Background>
                                     <RadialGradientBrush>
                                         <GradientStop Color="#FF4DE523" Offset="0.918"/>
@@ -59,6 +59,11 @@
 		<Binding Path="QuestionTable.QuestionGroupList" Source="{StaticResource Locator}"/>
 	</UserControl.DataContext>
     <ItemsControl ItemsSource="{Binding}">
+    	<ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid IsItemsHost="True" Columns="1" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
             <DataTemplate>
                 <Grid>
@@ -66,7 +71,7 @@
                     <ItemsControl ItemsSource="{Binding Questions}"  Margin="182.236,10.373,0,7.999" d:LayoutOverrides="Height">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel IsItemsHost="True" />
+                                <UniformGrid IsItemsHost="True" Rows="1" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>

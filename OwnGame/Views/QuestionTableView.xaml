@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Controls="clr-namespace:OwnGame.Controls" mc:Ignorable="d"
         d:DesignWidth="600" d:DesignHeight="300"
         DataContext="{Binding QuestionTable, Source={StaticResource Locator}}">
-    <StackPanel>
-        <Button Content="Load data from datasource" Command="{Binding LoadDataCommand}" Margin="0,0,0,15" Height="30" HorizontalAlignment="Left" Width="200" />
-        <Controls:QuestionGroupControl DataContext="{Binding QuestionGroupList}" />    	
-    </StackPanel>
+    <Grid>
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="30*"/>
+    		<RowDefinition Height="250*"/>
+    		<RowDefinition Height="30*"/>
+    	</Grid.RowDefinitions>
+        <Button Visibility="Hidden" Content="Load data from datasource" Command="{Binding LoadDataCommand}" Height="30" HorizontalAlignment="Left" Width="200" />
+        <Controls:QuestionGroupControl DataContext="{Binding QuestionGroupList}" Grid.Row="1" />    	
+    </Grid>
 </UserControl>

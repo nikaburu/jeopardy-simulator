@@ -37,7 +37,6 @@ namespace OwnGame.ViewModels
 
         public RelayCommand MakeAnsweredCommand { get; private set; }
         public CommandBase UnLoadQuestionCommand { get; private set; }
-        
 
         private bool _isAnswered;
         public bool IsAnswered

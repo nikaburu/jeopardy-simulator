@@ -1,6 +1,8 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
+using OwnGame.Models;
 using OwnGame.Servicies;
 
 namespace OwnGame.ViewModels
@@ -22,7 +24,21 @@ namespace OwnGame.ViewModels
             
             SimpleIoc.Default.Register<QuestionTableViewModel>();
             SimpleIoc.Default.Register<CommandResultsViewModel>();
+
             SimpleIoc.Default.Register<QuestionProcessViewModel>();
+            if (ViewModelBase.IsInDesignModeStatic)
+            {
+                var instance = SimpleIoc.Default.GetInstance<QuestionProcessViewModel>();
+                Messenger.Default.Send<GenericMessage<Question>>(new GenericMessage<Question>(new Question()
+                                                                                                  {
+                                                                                                      Answer = "Qanswer",
+                                                                                                      Cost = 100,
+                                                                                                      Id = 1,
+                                                                                                      QuestionGroupId = 1,
+                                                                                                      Text = "The World Wide Web has succeeded in large part because its software architecture has been designed to meet the needs of an Internet-scale distributed hypermedia system"
+                                                                                                  }));
+                instance.MakeAnsweredCommand.Execute(null);
+            }
         }
 
         public QuestionProcessViewModel QuestionProcess

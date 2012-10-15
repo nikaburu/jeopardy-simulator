@@ -3,21 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Converters="clr-namespace:OwnGame.Converters" mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="400" d:DesignWidth="300"
              DataContext="{Binding QuestionProcess, Source={StaticResource Locator}}">
-	<UserControl.Resources>
-		<Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-	</UserControl.Resources>
+    <UserControl.Resources>
+        <Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
     <StackPanel>
         <DockPanel>
             <Button Content="Back" DockPanel.Dock="Left" Width="60" Command="{Binding UnLoadQuestionCommand}" />
             <Button Content="Show answer" Width="100" DockPanel.Dock="Right" HorizontalAlignment="Right" Command="{Binding MakeAnsweredCommand}" />
-        </DockPanel>        
-    	<TextBlock Text="{Binding Model.Text}" />
-        <StackPanel Visibility="{Binding IsAnswered, Converter={StaticResource ResourceKey=BoolToVisibilityConverter}}">
-            <Border>
-                <TextBlock Text="{Binding Model.Answer}" />
-            </Border>            
-        </StackPanel>
+        </DockPanel>
+        <TextBlock Text="{Binding Model.Text}" FontSize="18.667" FontWeight="Bold" TextAlignment="Center" TextWrapping="WrapWithOverflow" Margin="5" Foreground="#FFB14709" />
+        <UniformGrid Columns="1" Visibility="{Binding IsAnswered, Converter={StaticResource ResourceKey=BoolToVisibilityConverter}}">
+            <Border BorderBrush="#FFDE8282" BorderThickness="3">
+                <TextBlock Text="{Binding Model.Answer}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18.667" FontWeight="Bold" Foreground="#FFED2E2E" />
+            </Border>
+            <ItemsControl ItemsSource="{Binding CommandResults.CommandResults, Source={StaticResource Locator}}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="10,0,10,0">
+                        	<TextBlock Text="{Binding Name}" FontSize="13.333" FontWeight="Bold" />
+                            <Button Margin="0,5,0,5" Content="+" 
+                                    Command="{Binding AddScoreCommand}"
+                                    CommandParameter="{Binding DataContext.Model.Cost, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UniformGrid}}"/>
+                            <Button Content="-"
+                                    Command="{Binding SubstractScoreCommand}"
+                                    CommandParameter="{Binding DataContext.Model.Cost, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UniformGrid}}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </UniformGrid>
     </StackPanel>
 </UserControl>

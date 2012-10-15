@@ -25,6 +25,7 @@ namespace OwnGame.Commands
         public override void Execute(int parameter)
         {
             ChangeScore(parameter);
+            Messenger.Default.Send(new ChangeMasterDetailStateMessage());
         }
 
         #endregion

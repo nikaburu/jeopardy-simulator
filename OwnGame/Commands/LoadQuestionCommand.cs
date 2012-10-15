@@ -2,6 +2,7 @@
 using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
 using OwnGame.Controls.ViewModels;
+using OwnGame.Messages;
 using OwnGame.Models;
 using OwnGame.Servicies;
 using OwnGame.ViewModels;
@@ -29,7 +30,8 @@ namespace OwnGame.Commands
 
             question.IsAnswered = true;
 
-            Messenger.Default.Send(new GenericMessage<Question>(question.Model));
+            Messenger.Default.Send(new LoadQuestionMessage(question.Model));
+            Messenger.Default.Send(new ChangeMasterDetailStateMessage());
         }
         
         #region Overrides of CommandBase<int>

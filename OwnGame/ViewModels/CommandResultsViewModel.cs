@@ -20,7 +20,7 @@ namespace OwnGame.ViewModels
             CommandResults = new ObservableCollection<CommandResultViewModel>();
             for (int commandNumber = 1; commandNumber <= commandsCount; commandNumber++)
             {
-                CommandResults.Add(new CommandResultViewModel(string.Format("Band {0}", commandNumber)));
+                CommandResults.Add(new CommandResultViewModel(string.Format("Команда {0}", commandNumber)));
             }
         }
     }

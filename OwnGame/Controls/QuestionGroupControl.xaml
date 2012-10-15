@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="600">
     <UserControl.Resources>
         <Style x:Key="QuestionButton" TargetType="{x:Type Button}">
-            <Setter Property="FontSize" Value="21.333" />
+            <Setter Property="FontSize" Value="32" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="#FF191B7C" />
         	<Setter Property="Template">

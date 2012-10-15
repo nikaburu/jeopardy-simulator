@@ -21,6 +21,7 @@ namespace OwnGame.Commands
         private void UnLoadQuestion()
         {
             Messenger.Default.Send(new CancelQuestionMessage(QuestionViewModel.Model));
+            Messenger.Default.Send(new ChangeMasterDetailStateMessage());
         }
         
         #region Overrides of CommandBase<int>

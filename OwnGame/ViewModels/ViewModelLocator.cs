@@ -39,6 +39,9 @@ namespace OwnGame.ViewModels
                                                                                                   }));
                 instance.MakeAnsweredCommand.Execute(null);
             }
+
+            SimpleIoc.Default.Register<MessagePopupViewModel>();
+            SimpleIoc.Default.GetInstance<MessagePopupViewModel>();
         }
 
         public QuestionProcessViewModel QuestionProcess
@@ -46,6 +49,14 @@ namespace OwnGame.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<QuestionProcessViewModel>();
+            }
+        }
+
+        public MessagePopupViewModel MessagePopup
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<MessagePopupViewModel>();
             }
         }
 

@@ -85,6 +85,7 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Messages\CancelQuestionMessage.cs" />
     <Compile Include="Messages\ChangeMasterDetailStateMessage.cs" />
+    <Compile Include="Messages\PopupActivateMessage.cs" />
     <Compile Include="Messages\LoadQuestionMessage.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\QuestionGroup.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Servicies\IQuestionService.cs" />
     <Compile Include="Models\CommandResultViewModel.cs" />
     <Compile Include="ViewModels\CommandResultsViewModel.cs" />
+    <Compile Include="ViewModels\MessagePopupViewModel.cs" />
     <Compile Include="ViewModels\QuestionProcessViewModel.cs" />
     <Compile Include="ViewModels\QuestionTableViewModel.cs" />
     <Compile Include="Controls\ViewModels\QuestionGroupViewModel.cs" />

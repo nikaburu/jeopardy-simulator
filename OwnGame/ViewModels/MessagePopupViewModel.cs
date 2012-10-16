@@ -14,6 +14,7 @@ namespace OwnGame.ViewModels
         private bool _isActive;
         private ChangeScoreCommand _command;
         private int _score;
+        private string _text;
 
         public MessagePopupViewModel()
         {
@@ -29,8 +30,15 @@ namespace OwnGame.ViewModels
                                                 });
 
             Messenger.Default.Register<PopupActivateMessage>(this, OnPopupActivate);
+
+            if (IsInDesignModeStatic)
+            {
+                Text = "Поздравляем!\t\nКомманда 1\t\n+30 баллов";
+            }
         }
 
+        private const string CongsText = "Поздравляем!\t\n{0}\t\n+{1} баллов";
+        private const string OopsText = "Увы!\t\n{0}\t\n-{1} баллов";
         private void OnPopupActivate(PopupActivateMessage message)
         {
             _command = message.Content.Item1;
@@ -38,7 +46,17 @@ namespace OwnGame.ViewModels
 
             IsActive = true;
 
-            //todo configure message
+            Text = string.Format(_command is AddScoreCommand ? CongsText : OopsText, _command.CommandName, _score);
+        }
+
+        public string Text
+        {
+            get { return _text; }
+            set
+            {
+                _text = value;
+                RaisePropertyChanged(() => Text);
+            }
         }
 
         public bool IsActive

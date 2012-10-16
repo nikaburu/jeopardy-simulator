@@ -12,6 +12,11 @@ namespace OwnGame.Commands
     public abstract class ChangeScoreCommand : CommandBase<int>
     {
         protected readonly CommandResultViewModel CommandResultViewModel;
+        
+        public string CommandName
+        {
+            get { return CommandResultViewModel.Name; }
+        }
 
         protected ChangeScoreCommand(CommandResultViewModel commandResultViewModel)
         {

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Class="OwnGame.Controls.QuestionGroupControl" 
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="600">
+             d:DesignHeight="500" d:DesignWidth="600">
     <UserControl.Resources>
         <Style x:Key="QuestionButton" TargetType="{x:Type Button}">
             <Setter Property="FontSize" Value="32" />
@@ -67,8 +67,17 @@
         <ItemsControl.ItemTemplate>
             <DataTemplate>
                 <Grid>
-                    <TextBlock Text="{Binding Name}" Margin="20,20,0,19.999" FontSize="21.333" Foreground="#FFF3F3DF" FontWeight="Bold" HorizontalAlignment="Left" d:LayoutOverrides="Height" />
-                    <ItemsControl ItemsSource="{Binding Questions}"  Margin="182.236,10.373,0,7.999" d:LayoutOverrides="Height">
+                	<Grid.RowDefinitions>
+                		<RowDefinition Height="41*"/>
+                		<RowDefinition Height="9*"/>
+                	</Grid.RowDefinitions>
+                	<Grid.ColumnDefinitions>
+                		<ColumnDefinition Width="200
+						*"/>
+                		<ColumnDefinition Width="420*"/>
+                	</Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Name}" FontSize="32" Foreground="#FFF3F3DF" FontWeight="Bold" HorizontalAlignment="Left" Grid.Column="0" Width="193.548" Grid.RowSpan="2" TextWrapping="Wrap" />
+                    <ItemsControl ItemsSource="{Binding Questions}" Grid.Column="1" Margin="0" Grid.Row="0">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid IsItemsHost="True" Rows="1" />
@@ -80,7 +89,7 @@
                 						ToolTip="{Binding Text}"
                                         Style="{StaticResource QuestionButton}"
                                         Command="{Binding Path=DataContext.LoadQuestionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" 
-                                        CommandParameter="{Binding Model.Cost}" />
+                                        CommandParameter="{Binding Model.Cost}" FontSize="48" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

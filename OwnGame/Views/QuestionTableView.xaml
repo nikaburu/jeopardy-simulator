@@ -7,11 +7,13 @@
         DataContext="{Binding QuestionTable, Source={StaticResource Locator}}">
     <Grid>
     	<Grid.RowDefinitions>
-    		<RowDefinition Height="30*"/>
+    		<RowDefinition Height="10*"/>
     		<RowDefinition Height="250*"/>
-    		<RowDefinition Height="30*"/>
+    		<RowDefinition Height="10*"/>
     	</Grid.RowDefinitions>
         <Button Visibility="Hidden" Content="Load data from datasource" Command="{Binding LoadDataCommand}" Height="30" HorizontalAlignment="Left" Width="200" />
-        <Controls:QuestionGroupControl DataContext="{Binding QuestionGroupList}" Grid.Row="1" />    	
+        <Viewbox Grid.Row="1" HorizontalAlignment="Left">
+			<Controls:QuestionGroupControl DataContext="{Binding QuestionGroupList}"  Height="791.357" Width="972.819" HorizontalAlignment="Left" VerticalAlignment="Top" />    	
+		</Viewbox>
     </Grid>
 </UserControl>

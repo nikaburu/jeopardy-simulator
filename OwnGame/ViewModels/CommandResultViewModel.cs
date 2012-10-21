@@ -7,7 +7,7 @@ using OwnGame.Messages;
 
 namespace OwnGame.ViewModels
 {
-    public class CommandResultViewModel : ViewModelBase
+    public class CommandResultViewModel : ObservableObject
     {
         public CommandResultViewModel(string name)
         {
@@ -97,11 +97,6 @@ namespace OwnGame.ViewModels
             if (score <= 0) throw new ArgumentException("score");
 
             Score -= score;
-
-            if (Score < 0)
-            {
-                Score = 0;
-            }
         }
 
         public void Activate(int bet)

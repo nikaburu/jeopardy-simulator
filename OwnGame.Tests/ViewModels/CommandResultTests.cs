@@ -33,7 +33,7 @@ namespace OwnGame.Tests.ViewModels
             viewModel.SubstractScoreCommand.Execute(cost);
 
             //Assert
-            Assert.IsTrue(viewModel.Score == 0 || viewModel.Score == prevScore - cost);
+            Assert.IsTrue(viewModel.Score == prevScore - cost);
         }
     }
 }

@@ -103,6 +103,9 @@
     <Compile Include="Views\CommandResultsView.xaml.cs">
       <DependentUpon>CommandResultsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MessagePopupView.xaml.cs">
+      <DependentUpon>MessagePopupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\QuestionProcessView.xaml.cs">
       <DependentUpon>QuestionProcessView.xaml</DependentUpon>
     </Compile>
@@ -127,6 +130,10 @@
     </Compile>
     <Page Include="Views\CommandResultsView.xaml">
       <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessagePopupView.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\QuestionProcessView.xaml">

@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using GalaSoft.MvvmLight;
+using OwnGame.Infrastructure;
 
 namespace OwnGame.Views
 {
@@ -13,6 +15,10 @@ namespace OwnGame.Views
         /// </summary>
         public CommandResultsView()
         {
+            if (ViewModelBase.IsInDesignModeStatic)
+            {
+                ViewModelLocatorHelper.CreateStaticViewModelLocatorForDesigner(this, new ViewModelLocator());
+            }
             InitializeComponent();
         }
     }

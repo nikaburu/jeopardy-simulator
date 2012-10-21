@@ -1,5 +1,6 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using GalaSoft.MvvmLight;
+using OwnGame.Infrastructure;
 
 namespace OwnGame.Views
 {
@@ -13,12 +14,8 @@ namespace OwnGame.Views
         /// </summary>
         public QuestionTableView()
         {
+            ViewModelLocatorHelper.CreateStaticViewModelLocatorForDesigner(this, new ViewModelLocator());
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

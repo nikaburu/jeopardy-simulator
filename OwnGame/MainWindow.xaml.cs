@@ -11,7 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using OwnGame.Infrastructure;
 using OwnGame.Messages;
 
 namespace OwnGame
@@ -23,6 +25,7 @@ namespace OwnGame
     {
         public MainWindow()
         {
+            ViewModelLocatorHelper.CreateStaticViewModelLocatorForDesigner(this, new ViewModelLocator());
             InitializeComponent();
 
             Messenger.Default.Register<LoadQuestionMessage>(this, ChangeMasterDetailState);

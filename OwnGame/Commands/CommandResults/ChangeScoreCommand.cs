@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using OwnGame.Messages;
 using OwnGame.Models;
+using OwnGame.ViewModels;
 
 namespace OwnGame.Commands.CommandResults
 {

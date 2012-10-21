@@ -2,11 +2,10 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using OwnGame.Commands;
 using OwnGame.Commands.CommandResults;
 using OwnGame.Messages;
 
-namespace OwnGame.Models
+namespace OwnGame.ViewModels
 {
     public class CommandResultViewModel : ViewModelBase
     {

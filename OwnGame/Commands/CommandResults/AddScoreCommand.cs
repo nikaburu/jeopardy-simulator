@@ -1,4 +1,5 @@
 ﻿using OwnGame.Models;
+using OwnGame.ViewModels;
 
 namespace OwnGame.Commands.CommandResults
 {

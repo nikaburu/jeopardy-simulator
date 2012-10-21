@@ -17,9 +17,12 @@
         </Grid.Background>
         <Views:QuestionTableView x:Name="questionTableView" Grid.Column="1" />
         <Views:QuestionProcessView x:Name="questionProcessView" Visibility="Collapsed" Grid.Column="1" />
-        <Border BorderBrush="Red" BorderThickness="1" Grid.Column="3">
+        <Border BorderBrush="Red" BorderThickness="1" Grid.Column="3" x:Name="resultsWindowView">
             <Views:CommandResultsView />
         </Border>
         <Views:MessagePopupView Grid.ColumnSpan="4" />
+        <Viewbox Width="300" x:Name="resultsView" Visibility="Collapsed" Grid.Column="1" Grid.ColumnSpan="2">
+            <Views:CommandResultsView />
+        </Viewbox>        
     </Grid>
 </Window>

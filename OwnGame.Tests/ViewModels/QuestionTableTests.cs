@@ -21,11 +21,11 @@ namespace OwnGame.Tests.ViewModels
                                                 new QuestionGroup(),
                                                 new QuestionGroup()
                                             };
-            serviceMoq.Setup(service => service.GetQuestionGroupList()).Returns(questionGroupFakeList);
+            serviceMoq.Setup(servMoq => servMoq.GetQuestionGroupList(1)).Returns(questionGroupFakeList);
             QuestionTableViewModel viewModel = new QuestionTableViewModel(serviceMoq.Object);
             int countBeforeCommand = viewModel.QuestionGroupList.Count;
             //Act
-            viewModel.LoadDataCommand.Execute();
+            viewModel.LoadDataCommand.Execute(service => service.GetQuestionGroupList());
 
             //Assert
             Assert.IsTrue(viewModel.QuestionGroupList.Count == questionGroupFakeList.Count + countBeforeCommand);

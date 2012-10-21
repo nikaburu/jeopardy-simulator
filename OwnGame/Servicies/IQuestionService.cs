@@ -5,6 +5,6 @@ namespace OwnGame.Servicies
 {
     public interface IQuestionService
     {
-        List<QuestionGroup> GetQuestionGroupList();
+        List<QuestionGroup> GetQuestionGroupList(int multi = 1);
     }
 }

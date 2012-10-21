@@ -42,8 +42,8 @@ namespace OwnGame
             if (locator == null)
                 throw new NullReferenceException("There is no resource with name Locator and typeof(ViewModelLocator) in App.xaml.");
 
-            locator.Initialize();
-            locator.CommandResults.InitializeCommands(CommandsCount);
+            GameController gameController = new GameController(locator);
+            gameController.InitializeNewGame(CommandsCount);
         }
 
         #endregion

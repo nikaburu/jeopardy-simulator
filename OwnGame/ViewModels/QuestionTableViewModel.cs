@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -8,6 +10,7 @@ using OwnGame.Commands;
 using OwnGame.Commands.Base;
 using OwnGame.Controls.ViewModels;
 using OwnGame.Messages;
+using OwnGame.Models;
 using OwnGame.Servicies;
 
 namespace OwnGame.ViewModels
@@ -23,11 +26,33 @@ namespace OwnGame.ViewModels
             QuestionGroupList = new ObservableCollection<QuestionGroupViewModel>();
             LoadDataCommand = new LoadQuestionGroupCommand(this, _questionService);
 
-            LoadDataCommand.Execute();
+            if (IsInDesignMode)
+            {
+                LoadDataCommand.Execute(service => service.GetQuestionGroupList());
+            }
+
+            MessengerInstance.Register<UnloadQuestionMessage>(this, OnUnloadQuestion);
         }
 
-        public ObservableCollection<QuestionGroupViewModel> QuestionGroupList { get; set; }
+        private void OnUnloadQuestion(UnloadQuestionMessage obj)
+        {
+            if (QuestionGroupList.All(group => group.Questions.All(question => question.IsAnswered)))
+            {
+                MessengerInstance.Send(new RoundEndedMessage());
+            }
+        }
 
-        public CommandBase LoadDataCommand { get; private set; }
+        private ObservableCollection<QuestionGroupViewModel> _questionGroupList;
+        public ObservableCollection<QuestionGroupViewModel> QuestionGroupList
+        {
+            get { return _questionGroupList; }
+            set
+            {
+                _questionGroupList = value;
+                RaisePropertyChanged(() => QuestionGroupList);
+            }
+        }
+
+        public CommandBase<Func<IQuestionService, IEnumerable<QuestionGroup>>> LoadDataCommand { get; private set; }
     }
 }

@@ -1,11 +1,15 @@
-﻿using OwnGame.Commands.Base;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using OwnGame.Commands.Base;
 using OwnGame.Controls.ViewModels;
+using OwnGame.Models;
 using OwnGame.Servicies;
 using OwnGame.ViewModels;
+using System;
 
 namespace OwnGame.Commands
 {
-    public sealed class LoadQuestionGroupCommand : CommandBase
+    public sealed class LoadQuestionGroupCommand : CommandBase<Func<IQuestionService, IEnumerable<QuestionGroup>>>
     {
         private readonly QuestionTableViewModel _viewModel;
         private readonly IQuestionService _questionService;
@@ -16,19 +20,20 @@ namespace OwnGame.Commands
             _questionService = questionService;
         }
 
-        private void LoadQuestionGroup()
+        private void LoadQuestionGroup(Func<IQuestionService, IEnumerable<QuestionGroup>> parameter)
         {
-            foreach (var questionGroup in _questionService.GetQuestionGroupList())
+            _viewModel.QuestionGroupList = new ObservableCollection<QuestionGroupViewModel>();
+            foreach (var questionGroup in parameter(_questionService))
             {
                 _viewModel.QuestionGroupList.Add(new QuestionGroupViewModel(questionGroup));
             }
         }
+        
+        #region Overrides of CommandBase<Func<IQuestionService,IEnumerable<QuestionGroup>>>
 
-        #region Overrides of CommandBase
-
-        public override void Execute()
+        public override void Execute(Func<IQuestionService, IEnumerable<QuestionGroup>> parameter)
         {
-            LoadQuestionGroup();
+            LoadQuestionGroup(parameter);
         }
 
         #endregion

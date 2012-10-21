@@ -77,5 +77,12 @@ namespace OwnGame.Infrastructure
         {
             InitializeStatic();
         }
+
+        public void GameControllerSetup(GameController gameController)
+        {
+            GameController = gameController;
+        }
+
+        protected GameController GameController { get; private set; }
     }
 }

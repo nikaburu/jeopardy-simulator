@@ -14,19 +14,19 @@ namespace OwnGame.Servicies
 
         #region Implementation of IQuestionService
 
-        public List<QuestionGroup> GetQuestionGroupList()
+        public List<QuestionGroup> GetQuestionGroupList(int multi = 1)
         {
             var list = new List<QuestionGroup>();
 
             for (int i = 0; i < 5; i++)
             {
-                list.Add(GenerateQuestionGroup());
+                list.Add(GenerateQuestionGroup(multi));
             }
 
             return list;
         }
 
-        private QuestionGroup GenerateQuestionGroup()
+        private QuestionGroup GenerateQuestionGroup(int multi)
         {
             byte[] image = LoadImage();
 
@@ -38,7 +38,7 @@ namespace OwnGame.Servicies
                                                                                 Text =
                                                                                     "Что такое экономика?",
                                                                                 Answer = "Совокупность общественных наук, изучающих производство, распределение и потребление товаров и услуг. Экономическая действительность является объектом экономических наук, которые подразделяется на теоретические и прикладные.",
-                                                                                Cost = 10,
+                                                                                Cost = 10 * multi,
                                                                                 TextImage = image
                                                                             },
                                                                         new Question()
@@ -47,7 +47,7 @@ namespace OwnGame.Servicies
                                                                                 Text =
                                                                                     "Кто , где и когда впервые дал понятие Экономике?",
                                                                                 Answer = "Ещё в IV веке до н. э. Ксенофонт написал произведение под названием «Домострой» , переведённое Цицероном на латынь как лат. Oeconomicus",
-                                                                                Cost = 20,
+                                                                                Cost = 20 * multi,
                                                                                 TextImage = image,
                                                                                 AnswerImage = image
                                                                             },
@@ -57,7 +57,7 @@ namespace OwnGame.Servicies
                                                                                 Text =
                                                                                     "После кого понятие экономики закрепилось?",
                                                                                 Answer = "Всеобщее признание термин получил после того как был употреблен в заглавии труда Джона Стюарта Милля «Основы политическаой экономии»",
-                                                                                Cost = 30,
+                                                                                Cost = 30 * multi,
                                                                                 AnswerImage = image
                                                                             },
                                                                         new Question()
@@ -66,7 +66,7 @@ namespace OwnGame.Servicies
                                                                                 Text =
                                                                                     "В связи чем и когд ознаменовалось выделение экономики как науки?",
                                                                                 Answer = "с выходом в свет книги Адама Смита «Исследование о природе и причинах богатства народов» (распространённое название «Богатство народов») в 1776 году",
-                                                                                Cost = 50
+                                                                                Cost = 50 * multi
                                                                             },
                                                                         new Question()
                                                                             {
@@ -74,7 +74,7 @@ namespace OwnGame.Servicies
                                                                                 Text =
                                                                                     "Совокупность моделей экономики, сформировавшихся в западноевропейской экономической теории это...",
                                                                                 Answer = "Экономикс",
-                                                                                Cost = 80
+                                                                                Cost = 80 * multi
                                                                             },
                                                                     })
             {

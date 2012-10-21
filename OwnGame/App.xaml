@@ -6,6 +6,11 @@
              xmlns:Infrastructure="clr-namespace:OwnGame.Infrastructure" mc:Ignorable="d"
              StartupUri="GamePreloader.xaml">
     <Application.Resources>
-        <Infrastructure:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+    	<ResourceDictionary>
+    		<ResourceDictionary.MergedDictionaries>
+    			<ResourceDictionary Source="Resources/GameResourceDictionary.xaml"/>
+    		</ResourceDictionary.MergedDictionaries>
+    		<Infrastructure:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+    	</ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -18,10 +18,10 @@ namespace OwnGame.Controls.ViewModels
             _model = questionGroup;
             LoadQuestionCommand = new LoadQuestionCommand(this, _model.Id);
 
-            Messenger.Default.Register<CancelQuestionMessage>(this, OnUnloadQuestion);
+            Messenger.Default.Register<UnloadQuestionMessage>(this, OnUnloadQuestion);
         }
 
-        private void OnUnloadQuestion(CancelQuestionMessage message)
+        private void OnUnloadQuestion(UnloadQuestionMessage message)
         {
             if (message.Content.QuestionGroupId == _model.Id)
             {

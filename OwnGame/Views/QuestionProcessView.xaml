@@ -32,26 +32,6 @@
             <Border BorderBrush="#FFDE8282" BorderThickness="3">
                 <TextBlock Text="{Binding Model.Answer}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26.667" FontWeight="Bold" Foreground="#FFED2E2E" TextWrapping="Wrap" />
             </Border>
-            <ItemsControl ItemsSource="{Binding CommandResults.CommandResults, Source={StaticResource Locator}}" FontSize="16" Grid.Row="1">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel IsItemsHost="True" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="10,0,10,0">
-                        	<TextBlock Text="{Binding Name}" FontSize="13.333" FontWeight="Bold" />
-                            <Button Margin="0,5,0,5" Content="+" 
-                                    Command="{Binding AddScoreCommand}"
-                                    CommandParameter="{Binding DataContext.Model.Cost, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}}"/>
-                            <Button Content="-"
-                                    Command="{Binding SubstractScoreCommand}"
-                                    CommandParameter="{Binding DataContext.Model.Cost, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
         </Grid>
     </Grid>
 </UserControl>

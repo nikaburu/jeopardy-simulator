@@ -75,7 +75,9 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandBase`.cs" />
     <Compile Include="Commands\CancelQuestionCommand.cs" />
-    <Compile Include="Commands\ChangeScoreCommand.cs" />
+    <Compile Include="Commands\CommandResults\AddScoreCommand.cs" />
+    <Compile Include="Commands\CommandResults\ChangeScoreCommand.cs" />
+    <Compile Include="Commands\CommandResults\SubstractScoreCommand.cs" />
     <Compile Include="Commands\LoadQuestionCommand.cs" />
     <Compile Include="Commands\LoadQuestionGroupCommand.cs" />
     <Compile Include="Controls\QuestionGroupControl.xaml.cs">
@@ -83,7 +85,7 @@
     </Compile>
     <Compile Include="Controls\ViewModels\QuestionViewModel.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Messages\CancelQuestionMessage.cs" />
+    <Compile Include="Messages\UnloadQuestionMessage.cs" />
     <Compile Include="Messages\ChangeMasterDetailStateMessage.cs" />
     <Compile Include="Messages\PopupActivateMessage.cs" />
     <Compile Include="Messages\LoadQuestionMessage.cs" />

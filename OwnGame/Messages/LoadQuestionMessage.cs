@@ -7,7 +7,7 @@ using OwnGame.Models;
 
 namespace OwnGame.Messages
 {
-    class LoadQuestionMessage : GenericMessage<Question>
+    public class LoadQuestionMessage : GenericMessage<Question>
     {
         public LoadQuestionMessage(Question content) : base(content)
         {

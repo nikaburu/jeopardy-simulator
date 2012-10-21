@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using GalaSoft.MvvmLight.Messaging;
 using OwnGame.Commands;
+using OwnGame.Commands.CommandResults;
 using OwnGame.Models;
 
 namespace OwnGame.Messages

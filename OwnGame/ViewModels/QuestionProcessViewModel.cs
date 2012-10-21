@@ -13,7 +13,7 @@ namespace OwnGame.ViewModels
         public QuestionProcessViewModel()
         {
             Messenger.Default.Register<LoadQuestionMessage>(this, OnLoadQuestion);
-            Messenger.Default.Register<CancelQuestionMessage>(this, OnUnloadQuestion);
+            Messenger.Default.Register<UnloadQuestionMessage>(this, OnUnloadQuestion);
             
             MakeAnsweredCommand = new RelayCommand(() =>
                                                        {
@@ -23,7 +23,7 @@ namespace OwnGame.ViewModels
             UnLoadQuestionCommand = new CancelQuestionCommand(this);
         }
 
-        private void OnUnloadQuestion(CancelQuestionMessage obj)
+        private void OnUnloadQuestion(UnloadQuestionMessage obj)
         {
             IsAnswered = false;
             Model = null;

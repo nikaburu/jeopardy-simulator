@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Test fish</Title>
+      <Author>Herman Starzhynski</Author>
+      <Description>Create test method in MSTest.</Description>
+      <Shortcut>tstmt</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[
+        [TestMethod]
+        public void Test$MethodName$When$WhenStatement$Then$ThenStatement$()
+        {
+            //Assign
+
+            //Act
+
+            //Assert
+        }
+        ]]>
+      </Code>
+      <Declarations>
+        <Literal>
+          <ID>MethodName</ID>
+          <ToolTip>Replace with test method name.</ToolTip>
+        </Literal>
+        <Literal>
+          <ID>WhenStatement</ID>
+          <ToolTip>Replace with when data.</ToolTip>
+        </Literal>
+        <Literal>
+          <ID>ThenStatement</ID>
+          <ToolTip>Replace with then data.</ToolTip>
+        </Literal>
+      </Declarations>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

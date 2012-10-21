@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using OwnGame.Models;
 
 namespace OwnGame.Servicies
@@ -24,6 +28,8 @@ namespace OwnGame.Servicies
 
         private QuestionGroup GenerateQuestionGroup()
         {
+            byte[] image = LoadImage("testImage.jpg");
+
             return new QuestionGroup(_random.Next(int.MaxValue), new List<Question>()
                                                                     {
                                                                         new Question()
@@ -32,7 +38,8 @@ namespace OwnGame.Servicies
                                                                                 Text =
                                                                                     "Что такое экономика?",
                                                                                 Answer = "Совокупность общественных наук, изучающих производство, распределение и потребление товаров и услуг. Экономическая действительность является объектом экономических наук, которые подразделяется на теоретические и прикладные.",
-                                                                                Cost = 10
+                                                                                Cost = 10,
+                                                                                TextImage = image
                                                                             },
                                                                         new Question()
                                                                             {
@@ -40,7 +47,9 @@ namespace OwnGame.Servicies
                                                                                 Text =
                                                                                     "Кто , где и когда впервые дал понятие Экономике?",
                                                                                 Answer = "Ещё в IV веке до н. э. Ксенофонт написал произведение под названием «Домострой» , переведённое Цицероном на латынь как лат. Oeconomicus",
-                                                                                Cost = 20
+                                                                                Cost = 20,
+                                                                                TextImage = image,
+                                                                                AnswerImage = image
                                                                             },
                                                                         new Question()
                                                                             {
@@ -48,7 +57,8 @@ namespace OwnGame.Servicies
                                                                                 Text =
                                                                                     "После кого понятие экономики закрепилось?",
                                                                                 Answer = "Всеобщее признание термин получил после того как был употреблен в заглавии труда Джона Стюарта Милля «Основы политическаой экономии»",
-                                                                                Cost = 30
+                                                                                Cost = 30,
+                                                                                AnswerImage = image
                                                                             },
                                                                         new Question()
                                                                             {
@@ -70,6 +80,11 @@ namespace OwnGame.Servicies
             {
                 Name = "История экономики" + " " + _random.Next(10)
             };
+        }
+
+        private static byte[] LoadImage(string fileName)
+        {
+            return File.ReadAllBytes("Servicies\\" + fileName);
         }
 
         #endregion

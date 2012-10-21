@@ -18,15 +18,16 @@ namespace OwnGame.ViewModels
             #region Designer mode
             if (IsInDesignMode)
             {
-                Model = new Question()
-                {
-                    Answer = "Qanswer",
-                    Cost = 100,
-                    Id = 1,
-                    Text = "The World Wide Web has succeeded in large " +
-                    "part because its software architecture has been designed " +
-                    "to meet the needs of an Internet-scale distributed hypermedia system"
-                };
+                var question = new Question()
+                                   {
+                                       Answer = "Qanswer",
+                                       Cost = 100,
+                                       Id = 1,
+                                       Text = "The World Wide Web has succeeded in large " +
+                                              "part because its software architecture has been designed " +
+                                              "to meet the needs of an Internet-scale distributed hypermedia system"
+                                   };
+                OnLoadQuestion(new LoadQuestionMessage(question));
             }
             #endregion
 
@@ -88,6 +89,17 @@ namespace OwnGame.ViewModels
             {
                 _contentText = value;
                 RaisePropertyChanged(() => ContentText);
+            }
+        }
+
+        private byte[] _imageData;
+        public byte[] ImageData
+        {
+            get { return _imageData; }
+            set
+            {
+                _imageData = value;
+                RaisePropertyChanged(() => ImageData);
             }
         }
 

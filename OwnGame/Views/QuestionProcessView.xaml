@@ -6,22 +6,24 @@
              d:DesignHeight="800" d:DesignWidth="800"
              DataContext="{Binding QuestionProcess, Source={StaticResource Locator}}">
     <UserControl.Resources>
-        <Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <Converters:ByteToBitmapImageConverter x:Key="ByteToBitmapImageConverter" />
     </UserControl.Resources>
     <Grid>
     	<Grid.ColumnDefinitions>
-    		<ColumnDefinition Width="0.1*"/>
-    		<ColumnDefinition Width="0.8*"/>
-    		<ColumnDefinition Width="0.1*"/>
+    		<ColumnDefinition Width="20" />
+    		<ColumnDefinition Width="*"/>
+    		<ColumnDefinition Width="Auto"/>
+    		<ColumnDefinition Width="20"/>
     	</Grid.ColumnDefinitions>
     	<Grid.RowDefinitions>
-    		<RowDefinition Height="35"/>
-            <RowDefinition />
+    		<RowDefinition Height="30"/>
+    		<RowDefinition/>
         </Grid.RowDefinitions>
-        <DockPanel Margin="0,8,8,0" d:LayoutOverrides="VerticalAlignment" Grid.ColumnSpan="3">
-            <Button Content="Отмена выбора вопроса" DockPanel.Dock="Left" Width="Auto" Command="{Binding CancelQuestionCommand}" />
-            <Button Content="{Binding NextStateActionText}" Width="Auto" DockPanel.Dock="Right" HorizontalAlignment="Right" Command="{Binding GoToNextStateCommand}" />
+        <DockPanel Margin="0,0,8,0" d:LayoutOverrides="VerticalAlignment" Grid.ColumnSpan="4">
+            <Button Content="Отмена выбора вопроса" DockPanel.Dock="Left" Command="{Binding CancelQuestionCommand}" VerticalAlignment="Top" />
+            <Button Content="{Binding NextStateActionText}" DockPanel.Dock="Right" HorizontalAlignment="Right" Command="{Binding GoToNextStateCommand}" />
         </DockPanel>
-        <TextBlock Text="{Binding ContentText}" FontSize="24" FontWeight="Bold" TextAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="#FFB14709" Grid.Column="1" Grid.Row="1" />        
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ContentText}" FontSize="24" FontWeight="Bold" TextAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="#FFB14709" />
+        <Image Grid.Column="2" Grid.Row="2" Source="{Binding ImageData, Converter={StaticResource ByteToBitmapImageConverter}}"/>
     </Grid>
 </UserControl>

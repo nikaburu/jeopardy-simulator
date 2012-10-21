@@ -7,18 +7,7 @@ using OwnGame.Models;
 
 namespace OwnGame.Messages
 {
-    public class UnloadQuestionMessage : GenericMessage<Question>
+    public class UnloadQuestionMessage : MessageBase
     {
-        public UnloadQuestionMessage(Question content) : base(content)
-        {
-        }
-
-        public UnloadQuestionMessage(object sender, Question content) : base(sender, content)
-        {
-        }
-
-        public UnloadQuestionMessage(object sender, object target, Question content) : base(sender, target, content)
-        {
-        }
     }
 }

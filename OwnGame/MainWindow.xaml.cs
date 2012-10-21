@@ -25,10 +25,11 @@ namespace OwnGame
         {
             InitializeComponent();
 
-            Messenger.Default.Register<ChangeMasterDetailStateMessage>(this, ChangeMasterDetailState);
+            Messenger.Default.Register<LoadQuestionMessage>(this, ChangeMasterDetailState);
+            Messenger.Default.Register<UnloadQuestionMessage>(this, ChangeMasterDetailState);
         }
 
-        private void ChangeMasterDetailState(ChangeMasterDetailStateMessage message)
+        private void ChangeMasterDetailState(MessageBase message)
         {
             questionTableView.Visibility = questionProcessView.Visibility;
             questionProcessView.Visibility = RevertVisibility(questionProcessView.Visibility);

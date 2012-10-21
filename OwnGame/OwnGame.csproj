@@ -74,7 +74,6 @@
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandBase`.cs" />
-    <Compile Include="Commands\CancelQuestionCommand.cs" />
     <Compile Include="Commands\CommandResults\AddScoreCommand.cs" />
     <Compile Include="Commands\CommandResults\ChangeScoreCommand.cs" />
     <Compile Include="Commands\CommandResults\SubstractScoreCommand.cs" />
@@ -89,8 +88,8 @@
       <DependentUpon>GamePreloader.xaml</DependentUpon>
     </Compile>
     <Compile Include="GamePreloaderViewModel.cs" />
+    <Compile Include="Messages\CancelQuestionMessage.cs" />
     <Compile Include="Messages\UnloadQuestionMessage.cs" />
-    <Compile Include="Messages\ChangeMasterDetailStateMessage.cs" />
     <Compile Include="Messages\PopupActivateMessage.cs" />
     <Compile Include="Messages\LoadQuestionMessage.cs" />
     <Compile Include="Models\Question.cs" />

@@ -4,6 +4,7 @@ using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using OwnGame.Commands;
+using OwnGame.Commands.Base;
 using OwnGame.Messages;
 using OwnGame.Models;
 
@@ -18,10 +19,10 @@ namespace OwnGame.Controls.ViewModels
             _model = questionGroup;
             LoadQuestionCommand = new LoadQuestionCommand(this, _model.Id);
 
-            Messenger.Default.Register<UnloadQuestionMessage>(this, OnUnloadQuestion);
+            Messenger.Default.Register<CancelQuestionMessage>(this, OnCancelQuestion);
         }
 
-        private void OnUnloadQuestion(UnloadQuestionMessage message)
+        private void OnCancelQuestion(CancelQuestionMessage message)
         {
             if (message.Content.QuestionGroupId == _model.Id)
             {

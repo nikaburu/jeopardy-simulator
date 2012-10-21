@@ -51,7 +51,7 @@ namespace OwnGame.Tests.ViewModels
             Messenger.Default.Send(new LoadQuestionMessage(question));
 
             //Act
-            Messenger.Default.Send(new UnloadQuestionMessage(question));
+            Messenger.Default.Send(new UnloadQuestionMessage());
 
             //Assert
             Assert.IsTrue(viewModel.CommandResults.All(rec => !rec.IsActive));

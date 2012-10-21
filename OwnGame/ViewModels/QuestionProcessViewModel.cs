@@ -17,9 +17,12 @@ namespace OwnGame.ViewModels
             {
                 Model = new Question()
                 {
-                    Answer = "Qanswer", Cost = 100, Id = 1, QuestionGroupId = 1,
-                    Text = "The World Wide Web has succeeded in large " + 
-                    "part because its software architecture has been designed " + 
+                    Answer = "Qanswer",
+                    Cost = 100,
+                    Id = 1,
+                    QuestionGroupId = 1,
+                    Text = "The World Wide Web has succeeded in large " +
+                    "part because its software architecture has been designed " +
                     "to meet the needs of an Internet-scale distributed hypermedia system"
                 };
                 IsAnswered = true;
@@ -29,12 +32,11 @@ namespace OwnGame.ViewModels
             Messenger.Default.Register<LoadQuestionMessage>(this, OnLoadQuestion);
             Messenger.Default.Register<UnloadQuestionMessage>(this, OnUnloadQuestion);
 
-            MakeAnsweredCommand = new RelayCommand(() =>
-                                                       {
-                                                           IsAnswered = true;
-                                                       });
-
-            UnLoadQuestionCommand = new CancelQuestionCommand(this);
+            MakeAnsweredCommand = new RelayCommand(() => IsAnswered = true);
+            CancelQuestionCommand = new RelayCommand(() => {
+                                                               Messenger.Default.Send(new CancelQuestionMessage(Model));
+                                                               Messenger.Default.Send(new UnloadQuestionMessage());
+            });
         }
 
         private void OnUnloadQuestion(UnloadQuestionMessage obj)
@@ -50,7 +52,7 @@ namespace OwnGame.ViewModels
         }
 
         public RelayCommand MakeAnsweredCommand { get; private set; }
-        public CommandBase UnLoadQuestionCommand { get; private set; }
+        public RelayCommand CancelQuestionCommand { get; private set; }
 
         private bool _isAnswered;
         public bool IsAnswered

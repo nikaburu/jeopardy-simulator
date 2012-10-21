@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using OwnGame.Commands.Base;
 using OwnGame.Messages;
 using OwnGame.Models;
 using OwnGame.ViewModels;

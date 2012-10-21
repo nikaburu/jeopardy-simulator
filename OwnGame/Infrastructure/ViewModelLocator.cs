@@ -4,8 +4,9 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
 using OwnGame.Models;
 using OwnGame.Servicies;
+using OwnGame.ViewModels;
 
-namespace OwnGame.ViewModels
+namespace OwnGame.Infrastructure
 {
     public class ViewModelLocator
     {

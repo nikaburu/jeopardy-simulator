@@ -28,7 +28,7 @@ namespace OwnGame.Servicies
 
         private QuestionGroup GenerateQuestionGroup()
         {
-            byte[] image = LoadImage("testImage.jpg");
+            byte[] image = LoadImage();
 
             return new QuestionGroup(_random.Next(int.MaxValue), new List<Question>()
                                                                     {
@@ -82,9 +82,9 @@ namespace OwnGame.Servicies
             };
         }
 
-        private static byte[] LoadImage(string fileName)
+        public static byte[] LoadImage()
         {
-            return File.ReadAllBytes("Servicies\\" + fileName);
+            return File.ReadAllBytes("Servicies\\" + "testImage.jpg");
         }
 
         #endregion

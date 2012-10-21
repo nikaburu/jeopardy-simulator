@@ -6,6 +6,7 @@ using OwnGame.Commands;
 using OwnGame.Commands.Base;
 using OwnGame.Messages;
 using OwnGame.Models;
+using OwnGame.Servicies;
 
 namespace OwnGame.ViewModels
 {
@@ -21,13 +22,17 @@ namespace OwnGame.ViewModels
                 var question = new Question()
                                    {
                                        Answer = "Qanswer",
+                                       AnswerImage = DesignDataQuestionService.LoadImage(),
                                        Cost = 100,
                                        Id = 1,
+                                       QuestionGroup = new QuestionGroup(1) {Name = "Test Group"},
                                        Text = "The World Wide Web has succeeded in large " +
                                               "part because its software architecture has been designed " +
                                               "to meet the needs of an Internet-scale distributed hypermedia system"
                                    };
                 OnLoadQuestion(new LoadQuestionMessage(question));
+                GoToNextStateCommand.Execute();
+                GoToNextStateCommand.Execute();
             }
             #endregion
 
@@ -100,8 +105,11 @@ namespace OwnGame.ViewModels
             {
                 _imageData = value;
                 RaisePropertyChanged(() => ImageData);
+                RaisePropertyChanged(() => IsShowImage);
             }
         }
+
+        public bool IsShowImage { get { return ImageData != null && ImageData.Length > 0; }}
 
         #endregion
     }

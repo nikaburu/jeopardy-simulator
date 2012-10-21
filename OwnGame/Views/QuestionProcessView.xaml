@@ -7,12 +7,12 @@
              DataContext="{Binding QuestionProcess, Source={StaticResource Locator}}">
     <UserControl.Resources>
         <Converters:ByteToBitmapImageConverter x:Key="ByteToBitmapImageConverter" />
+		<Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </UserControl.Resources>
-    <Grid>
+    <Grid x:Name="grid">
     	<Grid.ColumnDefinitions>
     		<ColumnDefinition Width="20" />
     		<ColumnDefinition Width="*"/>
-    		<ColumnDefinition Width="Auto"/>
     		<ColumnDefinition Width="20"/>
     	</Grid.ColumnDefinitions>
     	<Grid.RowDefinitions>
@@ -23,7 +23,11 @@
             <Button Content="Отмена выбора вопроса" DockPanel.Dock="Left" Command="{Binding CancelQuestionCommand}" VerticalAlignment="Top" />
             <Button Content="{Binding NextStateActionText}" DockPanel.Dock="Right" HorizontalAlignment="Right" Command="{Binding GoToNextStateCommand}" />
         </DockPanel>
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ContentText}" FontSize="24" FontWeight="Bold" TextAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="#FFB14709" />
-        <Image Grid.Column="2" Grid.Row="2" Source="{Binding ImageData, Converter={StaticResource ByteToBitmapImageConverter}}"/>
+        <WrapPanel Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center">
+        	<TextBlock Text="{Binding ContentText}" FontSize="32" FontWeight="Bold" TextAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="#FFB14709" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        	<Border Visibility="{Binding IsShowImage, Converter={StaticResource BoolToVisibilityConverter}}" BorderBrush="Black" BorderThickness="2" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+        		<Image Source="{Binding ImageData, Converter={StaticResource ByteToBitmapImageConverter}}" d:LayoutOverrides="GridBox" Width="100" Height="100" MinWidth="300" MinHeight="300" MaxWidth="400" MaxHeight="600" ScrollViewer.VerticalScrollBarVisibility="Disabled" />     	
+			</Border>
+        </WrapPanel>        
     </Grid>
 </UserControl>

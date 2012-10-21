@@ -1,0 +1,21 @@
+﻿<Window x:Class="OwnGame.GamePreloader"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GameInitialization" Height="480" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="218*" />
+            <RowDefinition Height="43*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="135*" />
+            <ColumnDefinition Width="143*" />
+        </Grid.ColumnDefinitions>
+        <Button Command="{Binding StartGameCommand}" Grid.Row="1" HorizontalAlignment="Right" Width="278" Grid.ColumnSpan="2" Content="Начать игру" Margin="5,10,5,5" />
+        <StackPanel Grid.Column="1" Margin="0,40,0,0">
+        	<TextBlock Height="40" TextWrapping="Wrap" Text="Количество комманд:" FontSize="13.333" FontWeight="Bold" Margin="10,0"/>
+        	<TextBox Height="40" TextWrapping="Wrap" Text="{Binding CommandsCount}" Margin="40,0" FontSize="16" TextAlignment="Center"/>
+        	<Slider Margin="40,0" Minimum="1" SmallChange="1" Value="{Binding CommandsCount}" AutoToolTipPlacement="BottomRight" TickPlacement="TopLeft" IsSnapToTickEnabled="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -12,9 +12,23 @@ namespace OwnGame.ViewModels
     {
         public QuestionProcessViewModel()
         {
+            #region Designer mode
+            if (IsInDesignMode)
+            {
+                Model = new Question()
+                {
+                    Answer = "Qanswer", Cost = 100, Id = 1, QuestionGroupId = 1,
+                    Text = "The World Wide Web has succeeded in large " + 
+                    "part because its software architecture has been designed " + 
+                    "to meet the needs of an Internet-scale distributed hypermedia system"
+                };
+                IsAnswered = true;
+            }
+            #endregion
+
             Messenger.Default.Register<LoadQuestionMessage>(this, OnLoadQuestion);
             Messenger.Default.Register<UnloadQuestionMessage>(this, OnUnloadQuestion);
-            
+
             MakeAnsweredCommand = new RelayCommand(() =>
                                                        {
                                                            IsAnswered = true;

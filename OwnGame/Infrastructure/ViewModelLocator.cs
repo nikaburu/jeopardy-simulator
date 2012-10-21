@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
@@ -12,6 +14,14 @@ namespace OwnGame.Infrastructure
     {
         static ViewModelLocator()
         {
+            if (ViewModelBase.IsInDesignModeStatic)
+            {
+                InitializeStatic();
+            }
+        }
+
+        private static void InitializeStatic()
+        {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             if (ViewModelBase.IsInDesignModeStatic)
@@ -22,29 +32,14 @@ namespace OwnGame.Infrastructure
             {
                 SimpleIoc.Default.Register<IQuestionService, DesignDataQuestionService>(); //todo change in production
             }
-            
+
             SimpleIoc.Default.Register<QuestionTableViewModel>();
             SimpleIoc.Default.Register<CommandResultsViewModel>();
-
             SimpleIoc.Default.Register<QuestionProcessViewModel>();
-            if (ViewModelBase.IsInDesignModeStatic)
-            {
-                var instance = SimpleIoc.Default.GetInstance<QuestionProcessViewModel>();
-                Messenger.Default.Send<GenericMessage<Question>>(new GenericMessage<Question>(new Question()
-                                                                                                  {
-                                                                                                      Answer = "Qanswer",
-                                                                                                      Cost = 100,
-                                                                                                      Id = 1,
-                                                                                                      QuestionGroupId = 1,
-                                                                                                      Text = "The World Wide Web has succeeded in large part because its software architecture has been designed to meet the needs of an Internet-scale distributed hypermedia system"
-                                                                                                  }));
-                instance.MakeAnsweredCommand.Execute(null);
-            }
-
             SimpleIoc.Default.Register<MessagePopupViewModel>();
-            SimpleIoc.Default.GetInstance<MessagePopupViewModel>();
         }
 
+        #region ViewModels
         public QuestionProcessViewModel QuestionProcess
         {
             get
@@ -52,7 +47,7 @@ namespace OwnGame.Infrastructure
                 return ServiceLocator.Current.GetInstance<QuestionProcessViewModel>();
             }
         }
-
+        
         public MessagePopupViewModel MessagePopup
         {
             get
@@ -75,6 +70,12 @@ namespace OwnGame.Infrastructure
             {
                 return ServiceLocator.Current.GetInstance<CommandResultsViewModel>();
             }
+        }
+        #endregion
+        
+        public void Initialize()
+        {
+            InitializeStatic();
         }
     }
 }

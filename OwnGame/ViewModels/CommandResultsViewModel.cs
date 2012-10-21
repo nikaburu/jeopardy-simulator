@@ -11,7 +11,7 @@ namespace OwnGame.ViewModels
     {
         public CommandResultsViewModel()
         {
-            //if (IsInDesignMode)
+            if (IsInDesignMode)
             {
                 InitializeCommands(5);
             }
@@ -38,7 +38,16 @@ namespace OwnGame.ViewModels
         }
         #endregion
 
-        public ObservableCollection<CommandResultViewModel> CommandResults { get; set; }
+        private ObservableCollection<CommandResultViewModel> _commandResults;
+        public ObservableCollection<CommandResultViewModel> CommandResults
+        {
+            get { return _commandResults; }
+            set
+            {
+                _commandResults = value;
+                RaisePropertyChanged(() => CommandResults);
+            }
+        }
 
         public void InitializeCommands(int commandsCount)
         {

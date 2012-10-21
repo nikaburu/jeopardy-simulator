@@ -85,6 +85,10 @@
     </Compile>
     <Compile Include="Controls\ViewModels\QuestionViewModel.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="GamePreloader.xaml.cs">
+      <DependentUpon>GamePreloader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GamePreloaderViewModel.cs" />
     <Compile Include="Messages\UnloadQuestionMessage.cs" />
     <Compile Include="Messages\ChangeMasterDetailStateMessage.cs" />
     <Compile Include="Messages\PopupActivateMessage.cs" />
@@ -113,6 +117,10 @@
       <DependentUpon>QuestionTableView.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\QuestionGroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GamePreloader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

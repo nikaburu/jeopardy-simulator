@@ -72,11 +72,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\CommandBase.cs" />
-    <Compile Include="Commands\CommandBase`.cs" />
+    <Compile Include="Commands\Base\CommandBase.cs" />
+    <Compile Include="Commands\Base\CommandBase`.cs" />
     <Compile Include="Commands\CommandResults\AddScoreCommand.cs" />
     <Compile Include="Commands\CommandResults\ChangeScoreCommand.cs" />
     <Compile Include="Commands\CommandResults\SubstractScoreCommand.cs" />
+    <Compile Include="Commands\ShowNextQuestionStateCommand.cs" />
     <Compile Include="Commands\LoadQuestionCommand.cs" />
     <Compile Include="Commands\LoadQuestionGroupCommand.cs" />
     <Compile Include="Controls\QuestionGroupControl.xaml.cs">

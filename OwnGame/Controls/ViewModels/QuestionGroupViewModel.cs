@@ -19,7 +19,7 @@ namespace OwnGame.Controls.ViewModels
             _model = questionGroup;
             LoadQuestionCommand = new LoadQuestionCommand(this, _model.Id);
 
-            Messenger.Default.Register<CancelQuestionMessage>(this, OnCancelQuestion);
+            MessengerInstance.Register<CancelQuestionMessage>(this, OnCancelQuestion);
         }
 
         private void OnCancelQuestion(CancelQuestionMessage message)
@@ -28,6 +28,8 @@ namespace OwnGame.Controls.ViewModels
             {
                 Questions.First(rec => rec.Model == message.Content).IsAnswered = false;
             }
+
+            MessengerInstance.Send(new UnloadQuestionMessage());
         }
 
         public int Id { get { return _model.Id; } }

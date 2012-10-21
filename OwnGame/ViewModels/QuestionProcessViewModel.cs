@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using OwnGame.Commands;
+using OwnGame.Commands.Base;
 using OwnGame.Messages;
 using OwnGame.Models;
 
@@ -10,6 +11,8 @@ namespace OwnGame.ViewModels
 {
     public class QuestionProcessViewModel : ViewModelBase
     {
+        public Question Model { get; private set; }
+
         public QuestionProcessViewModel()
         {
             #region Designer mode
@@ -20,60 +23,74 @@ namespace OwnGame.ViewModels
                     Answer = "Qanswer",
                     Cost = 100,
                     Id = 1,
-                    QuestionGroupId = 1,
                     Text = "The World Wide Web has succeeded in large " +
                     "part because its software architecture has been designed " +
                     "to meet the needs of an Internet-scale distributed hypermedia system"
                 };
-                IsAnswered = true;
             }
             #endregion
 
-            Messenger.Default.Register<LoadQuestionMessage>(this, OnLoadQuestion);
-            Messenger.Default.Register<UnloadQuestionMessage>(this, OnUnloadQuestion);
+            MessengerInstance.Register<LoadQuestionMessage>(this, OnLoadQuestion);
+            MessengerInstance.Register<UnloadQuestionMessage>(this, OnUnloadQuestion);
 
-            MakeAnsweredCommand = new RelayCommand(() => IsAnswered = true);
-            CancelQuestionCommand = new RelayCommand(() => {
-                                                               Messenger.Default.Send(new CancelQuestionMessage(Model));
-                                                               Messenger.Default.Send(new UnloadQuestionMessage());
-            });
+            CancelQuestionCommand = new RelayCommand(() => Messenger.Default.Send(new CancelQuestionMessage(Model)));
         }
 
+        #region Messages
         private void OnUnloadQuestion(UnloadQuestionMessage obj)
         {
-            IsAnswered = false;
             Model = null;
+            GoToNextStateCommand = null;
         }
 
-        private void OnLoadQuestion(GenericMessage<Question> message)
+        private void OnLoadQuestion(LoadQuestionMessage message)
         {
             Model = message.Content;
-            IsAnswered = false;
+            RelayCommand successCommand = new RelayCommand(() => MessengerInstance.Send(new UnloadQuestionMessage()));
+            GoToNextStateCommand = new ShowNextQuestionStateCommand(this, successCommand);
+        }
+        #endregion
+
+        #region Commands
+
+        private CommandBase _goToNextStateCommand;
+        public CommandBase GoToNextStateCommand
+        {
+            get { return _goToNextStateCommand; }
+            private set
+            {
+                _goToNextStateCommand = value;
+                RaisePropertyChanged(() => GoToNextStateCommand);
+            }
         }
 
-        public RelayCommand MakeAnsweredCommand { get; private set; }
         public RelayCommand CancelQuestionCommand { get; private set; }
+        #endregion
 
-        private bool _isAnswered;
-        public bool IsAnswered
+        #region Properties
+
+        private string _nextStateActionText;
+        public string NextStateActionText
         {
-            get { return _isAnswered; }
-            private set
+            get { return _nextStateActionText; }
+            set
             {
-                _isAnswered = value;
-                RaisePropertyChanged(() => IsAnswered);
+                _nextStateActionText = value;
+                RaisePropertyChanged(() => NextStateActionText);
             }
         }
 
-        private Question _model;
-        public Question Model
+        private string _contentText;
+        public string ContentText
         {
-            get { return _model; }
-            private set
+            get { return _contentText; }
+            set
             {
-                _model = value;
-                RaisePropertyChanged(() => Model);
+                _contentText = value;
+                RaisePropertyChanged(() => ContentText);
             }
         }
+
+        #endregion
     }
 }

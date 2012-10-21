@@ -21,7 +21,7 @@ namespace OwnGame.Models
             Questions = questions;
             foreach (var question in Questions)
             {
-                question.QuestionGroupId = Id;
+                question.QuestionGroup = this;
             }
         }
         #endregion

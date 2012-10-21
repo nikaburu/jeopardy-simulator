@@ -16,22 +16,12 @@
     	</Grid.ColumnDefinitions>
     	<Grid.RowDefinitions>
     		<RowDefinition Height="35"/>
-            <RowDefinition Height="150*" />
-            <RowDefinition Height="600*" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <DockPanel Margin="0,8,8,0" d:LayoutOverrides="VerticalAlignment" Grid.ColumnSpan="3">
             <Button Content="Отмена выбора вопроса" DockPanel.Dock="Left" Width="Auto" Command="{Binding CancelQuestionCommand}" />
-            <Button Content="Раскрыть ответ" Width="Auto" DockPanel.Dock="Right" HorizontalAlignment="Right" Command="{Binding MakeAnsweredCommand}" />
+            <Button Content="{Binding NextStateActionText}" Width="Auto" DockPanel.Dock="Right" HorizontalAlignment="Right" Command="{Binding GoToNextStateCommand}" />
         </DockPanel>
-        <TextBlock Text="{Binding Model.Text}" FontSize="24" FontWeight="Bold" TextAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="#FFB14709" Grid.Column="1" Grid.Row="1" />
-        <Grid Grid.Row="2" Grid.Column="1" Visibility="{Binding IsAnswered, Converter={StaticResource ResourceKey=BoolToVisibilityConverter}}">
-        	<Grid.RowDefinitions>
-        		<RowDefinition Height="200*"/>
-        		<RowDefinition Height="100*"/>
-        	</Grid.RowDefinitions>
-            <Border BorderBrush="#FFDE8282" BorderThickness="3">
-                <TextBlock Text="{Binding Model.Answer}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26.667" FontWeight="Bold" Foreground="#FFED2E2E" TextWrapping="Wrap" />
-            </Border>
-        </Grid>
+        <TextBlock Text="{Binding ContentText}" FontSize="24" FontWeight="Bold" TextAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="#FFB14709" Grid.Column="1" Grid.Row="1" />        
     </Grid>
 </UserControl>

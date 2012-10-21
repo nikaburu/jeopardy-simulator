@@ -9,6 +9,7 @@ namespace OwnGame.Models
         public string Answer { get; set; }
         public int Cost { get; set; }
 
-        public int QuestionGroupId { get; set; }
+        public int QuestionGroupId { get { return QuestionGroup != null ? QuestionGroup.Id : 0; } }
+        public QuestionGroup QuestionGroup { get; set; }
     }
 }

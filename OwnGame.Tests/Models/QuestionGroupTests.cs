@@ -5,9 +5,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OwnGame.Commands;
 using OwnGame.Controls.ViewModels;
 using OwnGame.Models;
-using OwnGame.ViewModels;
 
-namespace OwnGame.Tests
+namespace OwnGame.Tests.Models
 {
     [TestClass]
     public class QuestionGroupTests

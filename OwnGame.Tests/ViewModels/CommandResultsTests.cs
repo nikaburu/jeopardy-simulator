@@ -1,16 +1,11 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using OwnGame.Models;
 using OwnGame.ViewModels;
-using OwnGame.Servicies;
 using OwnGame.Messages;
 
-namespace OwnGame.Tests
+namespace OwnGame.Tests.ViewModels
 {
     [TestClass]
     public class CommandResultsTests

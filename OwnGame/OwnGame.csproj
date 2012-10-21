@@ -93,13 +93,13 @@
     <Compile Include="Models\QuestionGroup.cs" />
     <Compile Include="Servicies\DesignDataQuestionService.cs" />
     <Compile Include="Servicies\IQuestionService.cs" />
-    <Compile Include="Models\CommandResultViewModel.cs" />
+    <Compile Include="ViewModels\CommandResultViewModel.cs" />
     <Compile Include="ViewModels\CommandResultsViewModel.cs" />
     <Compile Include="ViewModels\MessagePopupViewModel.cs" />
     <Compile Include="ViewModels\QuestionProcessViewModel.cs" />
     <Compile Include="ViewModels\QuestionTableViewModel.cs" />
     <Compile Include="Controls\ViewModels\QuestionGroupViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Infrastructure\ViewModelLocator.cs" />
     <Compile Include="Views\CommandResultsView.xaml.cs">
       <DependentUpon>CommandResultsView.xaml</DependentUpon>
     </Compile>

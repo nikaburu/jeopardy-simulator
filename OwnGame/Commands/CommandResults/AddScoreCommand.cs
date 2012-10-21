@@ -3,7 +3,7 @@ using OwnGame.ViewModels;
 
 namespace OwnGame.Commands.CommandResults
 {
-    class AddScoreCommand : ChangeScoreCommand
+    public class AddScoreCommand : ChangeScoreCommand
     {
         public AddScoreCommand(CommandResultViewModel commandResultViewModel)
             : base(commandResultViewModel)

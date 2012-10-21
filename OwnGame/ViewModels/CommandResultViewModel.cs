@@ -17,6 +17,7 @@ namespace OwnGame.ViewModels
             Name = name;
             Score = 0;
 
+            #region Commands initialize
             AddScoreCommand = new AddScoreCommand(this);
             SubstractScoreCommand = new SubstractScoreCommand(this);
 
@@ -24,15 +25,16 @@ namespace OwnGame.ViewModels
                 delegate(int scr)
                     {
                         Messenger.Default.Send(
-                            new PopupActivateMessage(new Tuple<ChangeScoreCommand, int>(AddScoreCommand, scr)));
+                            new PopupActivateMessage(new PopupActivateArgs(AddScoreCommand, scr)));
                     });
 
             SubstractScorePopupCommand = new RelayCommand<int>(
                 delegate(int scr)
                     {
                         Messenger.Default.Send(
-                            new PopupActivateMessage(new Tuple<ChangeScoreCommand, int>(SubstractScoreCommand, scr)));
+                            new PopupActivateMessage(new PopupActivateArgs(SubstractScoreCommand, scr)));
                     });
+            #endregion
         }
 
         #region Commands
@@ -82,6 +84,7 @@ namespace OwnGame.ViewModels
 
         #endregion
 
+        #region Public methods
         public void AddScore(int score)
         {
             if (score <= 0) throw new ArgumentException("score");
@@ -112,5 +115,6 @@ namespace OwnGame.ViewModels
             IsActive = false;
             CurrentBet = 0;
         }
+        #endregion
     }
 }

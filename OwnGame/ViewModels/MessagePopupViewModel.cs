@@ -28,18 +28,23 @@ namespace OwnGame.ViewModels
             Messenger.Default.Register<PopupActivateMessage>(this, OnPopupActivate);
         }
 
+        public void ClosePopup()
+        {
+            IsActive = false;
+        }
+
         #region Commands
         public RelayCommand ProcessCommand { get; private set; }
         public RelayCommand CloseCommand { get; private set; }
         
         private void OnCloseCommandExecute()
         {
-            IsActive = false;
+            ClosePopup();
         }
 
         private void OnProcessCommandExecute()
         {
-            IsActive = false;
+            ClosePopup();
             _command.Execute(_score);
         }
         #endregion

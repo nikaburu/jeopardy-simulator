@@ -1,25 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using GalaSoft.MvvmLight.Messaging;
-using OwnGame.Commands;
 using OwnGame.Commands.CommandResults;
-using OwnGame.Models;
 
 namespace OwnGame.Messages
 {
-    class PopupActivateMessage : GenericMessage<Tuple<ChangeScoreCommand, int>>
+    public class PopupActivateMessage : GenericMessage<PopupActivateArgs>
     {
-        public PopupActivateMessage(Tuple<ChangeScoreCommand, int> content) : base(content)
+        public PopupActivateMessage(PopupActivateArgs content) : base(content)
         {
         }
 
-        public PopupActivateMessage(object sender, Tuple<ChangeScoreCommand, int> content) : base(sender, content)
+        public PopupActivateMessage(object sender, PopupActivateArgs content) : base(sender, content)
         {
         }
 
-        public PopupActivateMessage(object sender, object target, Tuple<ChangeScoreCommand, int> content) : base(sender, target, content)
+        public PopupActivateMessage(object sender, object target, PopupActivateArgs content) : base(sender, target, content)
+        {
+        }
+    }
+
+    public sealed class PopupActivateArgs : Tuple<ChangeScoreCommand, int>
+    {
+        public PopupActivateArgs(ChangeScoreCommand item1, int item2) : base(item1, item2)
         {
         }
     }

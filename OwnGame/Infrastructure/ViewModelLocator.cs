@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
@@ -19,7 +20,7 @@ namespace OwnGame.Infrastructure
                 InitializeStatic();
             }
         }
-
+        
         private static void InitializeStatic()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);

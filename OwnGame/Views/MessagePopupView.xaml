@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" mc:Ignorable="d" 
              DataContext="{Binding Path=MessagePopup, Source={StaticResource Locator}}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="#C5BFADAD" x:Name="messagePopup" Visibility="Collapsed">
+    <Grid x:Name="messagePopup" Background="#CC2842A9" Visibility="Collapsed">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="PopupActivationStates">
                 <VisualState x:Name="Opened">
@@ -26,7 +26,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="261*"/>
+            <ColumnDefinition Width="260*"/>
             <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
         <i:Interaction.Triggers>
@@ -35,7 +35,7 @@
             </i:EventTrigger>
         </i:Interaction.Triggers>
         <Viewbox Grid.Column="1" Grid.Row="1">
-            <TextBlock TextWrapping="Wrap" Text="{Binding Text}" FontSize="48" FontWeight="Bold" FontStyle="Italic" TextDecorations="{x:Null}" HorizontalAlignment="Center" TextAlignment="Center" Foreground="#FFB02620">
+            <TextBlock TextWrapping="Wrap" Text="{Binding Text}" FontSize="48" FontWeight="Bold" FontStyle="Italic" TextDecorations="{x:Null}" HorizontalAlignment="Center" TextAlignment="Center">
     			<i:Interaction.Triggers>
     				<ei:DataTrigger Binding="{Binding IsActive}" Value="True">
     					<ei:GoToStateAction StateName="Opened"/>
@@ -46,7 +46,7 @@
     			</i:Interaction.Triggers>
             </TextBlock>
         </Viewbox>
-        <Button Content="продолжить" Grid.Column="1" HorizontalAlignment="Center" Height="29" Margin="97.115,0,134.115,0" Grid.Row="2" VerticalAlignment="Bottom" Width="298" Command="{Binding ProcessCommand, Mode=OneWay}"/>
-        <Button Content="отмена" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="59" Command="{Binding CloseCommand, Mode=OneWay}" Grid.Column="2" Margin="41,0,0,0"/>
+        <Button Content="продолжить" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Bottom" Command="{Binding ProcessCommand, Mode=OneWay}"/>
+        <Button Content="отмена" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding CloseCommand, Mode=OneWay}" Grid.Column="1" />
     </Grid>
 </UserControl>

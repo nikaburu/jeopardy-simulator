@@ -14,6 +14,7 @@ namespace OwnGame.ViewModels
             if (IsInDesignMode)
             {
                 InitializeCommands(5);
+                OnLoadQuestion(new LoadQuestionMessage(new Question() {Cost = 50}));
             }
 
             MessengerInstance.Register<LoadQuestionMessage>(this, OnLoadQuestion);

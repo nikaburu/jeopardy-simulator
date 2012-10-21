@@ -17,9 +17,10 @@ namespace OwnGame.ViewModels
 
         public MessagePopupViewModel()
         {
-            if (IsInDesignModeStatic)
+            if (IsInDesignMode)
             {
                 Text = "Поздравляем!\t\nКомманда 1\t\n+30 баллов";
+                IsActive = true;
             }
             
             ProcessCommand = new RelayCommand(OnProcessCommandExecute);

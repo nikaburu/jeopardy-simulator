@@ -12,26 +12,19 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="21.333" Foreground="#FF55059B" />
-                        <Border Width="47" Height="48.624">
-                            <Border.Background>
-                                <RadialGradientBrush>
-                                    <GradientStop Color="#00E0D926" Offset="1"/>
-                                    <GradientStop Color="#FFFFF600"/>
-                                    <GradientStop Color="#CCE0E58E" Offset="0.792"/>
-                                </RadialGradientBrush>
-                            </Border.Background>
-                            <TextBlock Text="{Binding Score}" FontSize="21.333" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#FF1E34EF" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="21.333" />
+                        <Border Background="Black" BorderBrush="DarkBlue" BorderThickness="2">
+                            <TextBlock Text="{Binding Score}" FontSize="21.333" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFB40000" />
                         </Border>
-                        <StackPanel Margin="10,0,10,0" Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <Button Margin="0,5,0,5" Content="+" 
-                                    Command="{Binding AddScorePopupCommand}"
-                                    CommandParameter="{Binding CurrentBet}"/>
-                            <TextBlock Margin="0,0,0,5" Text="{Binding CurrentBet}" />
-                            <Button Content="-"
-                                    Command="{Binding SubstractScorePopupCommand}"
-                                    CommandParameter="{Binding CurrentBet}"/>
-                        </StackPanel>
+                        <WrapPanel Margin="10,2" Visibility="{Binding IsActive, Converter={StaticResource BoolToVisibilityConverter}}">
+                        	<Button Content="+" 
+                        		Command="{Binding AddScorePopupCommand}"
+                        		CommandParameter="{Binding CurrentBet}" Width="40"/>
+                        	<TextBlock Margin="0,0,0,5" Text="{Binding CurrentBet}" FontSize="21.333" FontWeight="Bold" Width="28" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        	<Button Content="-"
+                        		Command="{Binding SubstractScorePopupCommand}"
+                        		CommandParameter="{Binding CurrentBet}" Width="40"/>
+                        </WrapPanel>
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

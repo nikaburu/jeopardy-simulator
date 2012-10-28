@@ -225,8 +225,14 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Content Include="Servicies\Questions\level1.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Servicies\Questions\testImage.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Untitled.ico" />
     <Resource Include="Resources\svoja_igra.jpg" />
     <Content Include="Servicies\testImage.jpg">

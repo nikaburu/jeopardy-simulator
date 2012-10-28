@@ -13,33 +13,33 @@ namespace OwnGame.Servicies
     {
         #region Implementation of IQuestionService
         private readonly Random _random = new Random();
-        private  string folder = Environment.CurrentDirectory+@"\Вопросы\";
+        private readonly string _folder = Environment.CurrentDirectory + @"\Servicies\Questions\";
         private const string Level1FileName = "level1.xls";
         private const string Level2FileName = "level2.xls";
         private const string Level3FileName = "level3.xls";
-        private Excel.Application application;
+        private Excel.Application _application;
 
 
         public List<QuestionGroup> GetQuestionGroupList(int multi = 1)
         {
             var list = new List<QuestionGroup>();
-            application = new Excel.Application();
+            _application = new Excel.Application();
            // application.Workbooks.Open(Level1FileName);
-            application.Visible = false;
+            _application.Visible = false;
             switch (multi)
             {
                 case 1:
-                    application.Workbooks.Open(folder+Level1FileName);       
+                    _application.Workbooks.Open(_folder+Level1FileName);       
                     break;
                 case 2:
-                    application.Workbooks.Open(folder + Level2FileName);
+                    _application.Workbooks.Open(_folder + Level2FileName);
                     break;
                 case 3:
-                    application.Workbooks.Open(folder + Level3FileName);
+                    _application.Workbooks.Open(_folder + Level3FileName);
                     break;
             }
 
-            foreach (Excel.Worksheet sheet in application.Workbooks[1].Worksheets)
+            foreach (Excel.Worksheet sheet in _application.Workbooks[1].Worksheets)
             {
                 
                             
@@ -52,9 +52,9 @@ namespace OwnGame.Servicies
                                        {
                                            Id = _random.Next(int.MaxValue),
                                            Text = ((Excel.Range)columns.Columns[1]).Value2.ToString(),
-                                           TextImage = columns.Columns[2] ==null ? null : File.ReadAllBytes(folder+((Excel.Range)columns.Columns[2]).Value2.ToString()),
+                                           TextImage = columns.Columns[2] ==null ? null : File.ReadAllBytes(_folder+((Excel.Range)columns.Columns[2]).Value2.ToString()),
                                            Answer = ((Excel.Range)columns.Columns[3]).Value2.ToString(),
-                                           AnswerImage = String.IsNullOrEmpty(((Excel.Range)columns.Columns[4]).Value2.ToString()) ? null : File.ReadAllBytes(folder + ((Excel.Range)columns.Columns[4]).Value2.ToString()),
+                                           AnswerImage = String.IsNullOrEmpty(((Excel.Range)columns.Columns[4]).Value2.ToString()) ? null : File.ReadAllBytes(_folder + ((Excel.Range)columns.Columns[4]).Value2.ToString()),
                                            Cost = int.Parse(((Excel.Range)columns.Columns[5]).Value2.ToString())
                                        });
                     i++;
@@ -65,8 +65,8 @@ namespace OwnGame.Servicies
                 list.Add(group);
             }
 
-            application.Workbooks[1].Close();
-            Marshal.ReleaseComObject(application);
+            _application.Workbooks[1].Close();
+            Marshal.ReleaseComObject(_application);
             return GetRandomGroups(list).ToList();
         }
 
@@ -89,20 +89,20 @@ namespace OwnGame.Servicies
 
         }
 
-        private IEnumerable<QuestionGroup> GetRandomGroups (IEnumerable<QuestionGroup> groups )
+        private IEnumerable<QuestionGroup> GetRandomGroups(IEnumerable<QuestionGroup> groups )
         {
             return RandomPermutation(groups);
         }
 
 
-        static Random random = new Random();
+        static readonly Random Random = new Random();
 
         public static IEnumerable<T> RandomPermutation<T>(IEnumerable<T> sequence)
         {
             T[] retArray = sequence.ToArray();
             for (int i = 0; i < retArray.Length - 1; i += 1)
             {
-                int swapIndex = random.Next(i + 1, retArray.Length);
+                int swapIndex = Random.Next(i + 1, retArray.Length);
                 T temp = retArray[i];
                 retArray[i] = retArray[swapIndex];
                 retArray[swapIndex] = temp;

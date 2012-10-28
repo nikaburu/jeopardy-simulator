@@ -36,7 +36,7 @@ namespace OwnGame.ViewModels
 
         private void OnUnloadQuestion(UnloadQuestionMessage obj)
         {
-            if (QuestionGroupList.Any(group => group.Questions.Any(question => question.IsAnswered)))//todo return before commit
+            if (QuestionGroupList.All(group => group.Questions.All(question => question.IsAnswered)))
             {
                 MessengerInstance.Send(new RoundEndedMessage());
             }

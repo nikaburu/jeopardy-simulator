@@ -1,1 +1,0 @@
-stupid shit herman asshole

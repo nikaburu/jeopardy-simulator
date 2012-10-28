@@ -106,6 +106,7 @@
     <Compile Include="Controls\ViewModels\QuestionViewModel.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\ByteToBitmapImageConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityInvertedConverter.cs" />
     <Compile Include="GamePreloader.xaml.cs">
       <DependentUpon>GamePreloader.xaml</DependentUpon>
     </Compile>

@@ -7,7 +7,7 @@ using OwnGame.Models;
 
 namespace OwnGame.Messages
 {
-    public class GameEndedMessage : MessageBase
+    public class NextRoundMessage : MessageBase
     {
         
     }

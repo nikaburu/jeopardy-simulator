@@ -39,7 +39,7 @@ namespace OwnGame.ViewModels
             MessengerInstance.Register<LoadQuestionMessage>(this, OnLoadQuestion);
             MessengerInstance.Register<UnloadQuestionMessage>(this, OnUnloadQuestion);
 
-            CancelQuestionCommand = new RelayCommand(() => Messenger.Default.Send(new CancelQuestionMessage(Model)));
+            CancelQuestionCommand = new RelayCommand(() => Messenger.Default.Send(new CancelQuestionMessage(Model)));//, () => false);
         }
 
         #region Messages

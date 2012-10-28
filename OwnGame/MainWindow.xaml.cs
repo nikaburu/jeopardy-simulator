@@ -23,6 +23,10 @@ namespace OwnGame
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Visibility _questionTableVisibility;
+        private Visibility _questionProcessVisibility;
+        private int _roundNo = 1;
+
         public MainWindow()
         {
             ViewModelLocatorHelper.CreateStaticViewModelLocatorForDesigner(this, new ViewModelLocator());
@@ -31,7 +35,20 @@ namespace OwnGame
             Messenger.Default.Register<LoadQuestionMessage>(this, ChangeMasterDetailState);
             Messenger.Default.Register<UnloadQuestionMessage>(this, ChangeMasterDetailState);
 
-            Messenger.Default.Register<GameEndedMessage>(this, ShowResults);
+            Messenger.Default.Register<RoundEndedMessage>(this, ShowResults);
+            Messenger.Default.Register<NextRoundMessage>(this, OnNextRound);
+        }
+
+        private void OnNextRound(NextRoundMessage message)
+        {
+            questionTableView.Visibility = _questionTableVisibility;
+            questionProcessView.Visibility = _questionProcessVisibility;
+            
+            if (++_roundNo < 3) 
+                ChangeMasterDetailState(null);
+            
+            resultsWindowView.Visibility = Visibility.Visible;
+            resultsView.Visibility = Visibility.Hidden;
         }
 
         private void ChangeMasterDetailState(MessageBase message)
@@ -50,10 +67,13 @@ namespace OwnGame
 
         private void ShowResults(MessageBase message)
         {
+            _questionTableVisibility = questionTableView.Visibility;
             questionTableView.Visibility = Visibility.Collapsed;
+
+            _questionProcessVisibility = questionProcessView.Visibility;
             questionProcessView.Visibility = Visibility.Collapsed;
+
             resultsWindowView.Visibility = Visibility.Collapsed;
-            
             resultsView.Visibility = Visibility.Visible;
         }
     }

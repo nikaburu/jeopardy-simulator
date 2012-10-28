@@ -38,6 +38,16 @@ namespace OwnGame.Infrastructure
             SimpleIoc.Default.Register<CommandResultsViewModel>();
             SimpleIoc.Default.Register<QuestionProcessViewModel>();
             SimpleIoc.Default.Register<MessagePopupViewModel>();
+            SimpleIoc.Default.Register<TotalResultsViewModel>();
+            
+        }
+
+        public IQuestionService QuestionService
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<IQuestionService>();
+            }
         }
 
         #region ViewModels
@@ -46,6 +56,14 @@ namespace OwnGame.Infrastructure
             get
             {
                 return ServiceLocator.Current.GetInstance<QuestionProcessViewModel>();
+            }
+        }
+
+        public TotalResultsViewModel TotalResults
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<TotalResultsViewModel>();
             }
         }
         

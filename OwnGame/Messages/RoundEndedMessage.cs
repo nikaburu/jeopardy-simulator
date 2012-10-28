@@ -9,6 +9,11 @@ namespace OwnGame.Messages
 {
     public class RoundEndedMessage : MessageBase
     {
-        
+        public bool IsGameEnded { get; private set; }
+
+        public RoundEndedMessage(bool isGameEnded = false)
+        {
+            IsGameEnded = isGameEnded;
+        }
     }
 }

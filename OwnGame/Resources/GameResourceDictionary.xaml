@@ -42,14 +42,34 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Cursor="Hand" x:Name="ContentContainer" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="3" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                        <ContentPresenter Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RenderTransformOrigin="0.5,0.5" OpacityMask="Black">
-                            <ContentPresenter.ContentTemplate>
-                                <DataTemplate>
-                                    <TextBlock Foreground="White" Text="{TemplateBinding Content}" FontSize="24" FontWeight="Bold"/>
-                                </DataTemplate>
-                            </ContentPresenter.ContentTemplate>
-                        </ContentPresenter>
-                    </Border>
+                		<VisualStateManager.VisualStateGroups>
+                			<VisualStateGroup x:Name="CommonStates">
+                				<VisualState x:Name="Normal"/>
+                				<VisualState x:Name="MouseOver"/>
+                				<VisualState x:Name="Pressed"/>
+                				<VisualState x:Name="Disabled">
+                					<Storyboard>
+                						<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="contentPresenter">
+                							<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                						</ObjectAnimationUsingKeyFrames>
+                						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenter">
+                							<EasingDoubleKeyFrame KeyTime="0" Value="0.495"/>
+                						</DoubleAnimationUsingKeyFrames>
+                						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ContentContainer">
+                							<EasingDoubleKeyFrame KeyTime="0" Value="0.495"/>
+                						</DoubleAnimationUsingKeyFrames>
+                					</Storyboard>
+                				</VisualState>
+                			</VisualStateGroup>
+                		</VisualStateManager.VisualStateGroups>
+                		<ContentPresenter x:Name="contentPresenter" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RenderTransformOrigin="0.5,0.5" OpacityMask="Black">
+                			<ContentPresenter.ContentTemplate>
+                				<DataTemplate>
+                					<TextBlock Foreground="White" Text="{TemplateBinding Content}" FontSize="24" FontWeight="Bold"/>
+                				</DataTemplate>
+                			</ContentPresenter.ContentTemplate>
+                		</ContentPresenter>
+                	</Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

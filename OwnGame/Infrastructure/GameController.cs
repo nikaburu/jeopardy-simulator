@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
 using OwnGame.Messages;
+using OwnGame.Models;
 
 namespace OwnGame.Infrastructure
 {
@@ -18,10 +16,10 @@ namespace OwnGame.Infrastructure
             ViewModelLocator = modelLocator;
             ViewModelLocator.GameControllerSetup(this);
 
-            Messenger.Default.Register<RoundEndedMessage>(this, OnRoundEnded);
+            Messenger.Default.Register<NextRoundMessage>(this, OnRoundEnded);
         }
 
-        private void OnRoundEnded(RoundEndedMessage msg)
+        private void OnRoundEnded(NextRoundMessage msg)
         {
             StartNextRound();
         }
@@ -37,8 +35,6 @@ namespace OwnGame.Infrastructure
 
         private void InitializeSecondRound()
         {
-            CurrentRound = GameRound.SecondRound;
-
             ViewModelLocator.QuestionTable.LoadDataCommand.Execute((service) => service.GetQuestionGroupList(2));
         }
 
@@ -48,20 +44,57 @@ namespace OwnGame.Infrastructure
             {
                 case GameRound.FirstRound:
                     InitializeSecondRound();
+                    CurrentRound = GameRound.SecondRound;
                     break;
                 case GameRound.SecondRound:
-                    //todo super
-                    ShowResults();
+                    InitializeSuperRound();
+                    CurrentRound = GameRound.SuperRound;
                     break;
                 case GameRound.SuperRound:
                     ShowResults();
+                    CurrentRound = GameRound.Results;
                     break;
             }
         }
 
-        private void ShowResults()
+        private void InitializeSuperRound()
         {
-            Messenger.Default.Send(new GameEndedMessage());
+            Messenger.Default.Unregister<UnloadQuestionMessage>(ViewModelLocator.QuestionTable);
+            Messenger.Default.Unregister<CancelQuestionMessage>(ViewModelLocator.QuestionTable);
+            foreach (var groupViewModel in ViewModelLocator.QuestionTable.QuestionGroupList)
+            {
+                Messenger.Default.Unregister<UnloadQuestionMessage>(groupViewModel);
+                Messenger.Default.Unregister<CancelQuestionMessage>(groupViewModel);
+            }
+            //unregister MainVindow
+            Messenger.Default.Unregister<LoadQuestionMessage>(Application.Current.MainWindow);
+            Messenger.Default.Unregister<UnloadQuestionMessage>(Application.Current.MainWindow);
+
+            Messenger.Default.Register<UnloadQuestionMessage>(this, OnUnloadQuestion);
+            _superRoundQuestionGroup = ViewModelLocator.QuestionService.GetQuestionGroupList(3).First();
+
+            OnUnloadQuestion(null);
+        }
+
+        private QuestionGroup _superRoundQuestionGroup;
+        private int _currentQuestion = 0;
+        
+        private void OnUnloadQuestion(UnloadQuestionMessage obj)
+        {
+            if (_currentQuestion > _superRoundQuestionGroup.Questions.Count() -1)
+            {
+                OnRoundEnded(null);
+            }
+            else
+            {
+                Question question = _superRoundQuestionGroup.Questions.ElementAtOrDefault(_currentQuestion++);
+                Messenger.Default.Send(new LoadQuestionMessage(question));   
+            }
+        }
+
+        private static void ShowResults()
+        {
+            Messenger.Default.Send(new RoundEndedMessage(true));
         }
 
         enum GameRound

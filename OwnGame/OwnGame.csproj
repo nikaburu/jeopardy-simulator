@@ -115,8 +115,8 @@
     <Compile Include="Infrastructure\ViewModelLocatorHelper.cs" />
     <Compile Include="Messages\CancelQuestionMessage.cs" />
     <Compile Include="Messages\SupperRoundStartedMessage.cs" />
-    <Compile Include="Messages\GameEndedMessage.cs" />
     <Compile Include="Messages\RoundEndedMessage.cs" />
+    <Compile Include="Messages\NextRoundMessage.cs" />
     <Compile Include="Messages\UnloadQuestionMessage.cs" />
     <Compile Include="Messages\PopupActivateMessage.cs" />
     <Compile Include="Messages\LoadQuestionMessage.cs" />
@@ -126,6 +126,7 @@
     <Compile Include="Servicies\IQuestionService.cs" />
     <Compile Include="ViewModels\CommandResultViewModel.cs" />
     <Compile Include="ViewModels\CommandResultsViewModel.cs" />
+    <Compile Include="ViewModels\TotalResultsViewModel.cs" />
     <Compile Include="ViewModels\MessagePopupViewModel.cs" />
     <Compile Include="ViewModels\QuestionProcessViewModel.cs" />
     <Compile Include="ViewModels\QuestionTableViewModel.cs" />
@@ -142,6 +143,9 @@
     </Compile>
     <Compile Include="Views\QuestionTableView.xaml.cs">
       <DependentUpon>QuestionTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TotalResultsView.xaml.cs">
+      <DependentUpon>TotalResultsView.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\QuestionGroupControl.xaml">
       <SubType>Designer</SubType>
@@ -186,6 +190,10 @@
     </Page>
     <Page Include="Views\QuestionTableView.xaml">
       <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TotalResultsView.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

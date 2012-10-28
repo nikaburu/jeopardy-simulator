@@ -27,11 +27,11 @@ namespace OwnGame.Infrastructure
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
-                SimpleIoc.Default.Register<IQuestionService, DesignDataQuestionService>();
+                SimpleIoc.Default.Register<IQuestionService, ExcelDataQuestionService>();
             }
             else
             {
-                SimpleIoc.Default.Register<IQuestionService, DesignDataQuestionService>(); //todo change in production
+                SimpleIoc.Default.Register<IQuestionService, ExcelDataQuestionService>(); //todo change in production
             }
 
             SimpleIoc.Default.Register<QuestionTableViewModel>();

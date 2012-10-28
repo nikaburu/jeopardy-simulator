@@ -65,6 +65,9 @@
       <HintPath>..\packages\MvvmLight.4.1.23.0\lib\net40\GalaSoft.MvvmLight.WPF4.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLight.4.1.23.0\lib\net40\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -123,6 +126,7 @@
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\QuestionGroup.cs" />
     <Compile Include="Servicies\DesignDataQuestionService.cs" />
+    <Compile Include="Servicies\ExcelDataQuestionService.cs" />
     <Compile Include="Servicies\IQuestionService.cs" />
     <Compile Include="ViewModels\CommandResultViewModel.cs" />
     <Compile Include="ViewModels\CommandResultsViewModel.cs" />

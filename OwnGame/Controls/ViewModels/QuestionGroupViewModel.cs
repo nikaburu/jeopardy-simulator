@@ -32,9 +32,8 @@ namespace OwnGame.Controls.ViewModels
             if (message.Content.QuestionGroupId == _model.Id)
             {
                 Questions.First(rec => rec.Model == message.Content).IsAnswered = false;
+                MessengerInstance.Send(new UnloadQuestionMessage());
             }
-
-            MessengerInstance.Send(new UnloadQuestionMessage());
         }
 
         public int Id { get { return _model.Id; } }

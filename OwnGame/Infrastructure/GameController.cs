@@ -74,6 +74,8 @@ namespace OwnGame.Infrastructure
             _superRoundQuestionGroup = ViewModelLocator.QuestionService.GetQuestionGroupList(3).First();
 
             OnUnloadQuestion(null);
+
+            Messenger.Default.Send(new SupperRoundStartedMessage());
         }
 
         private QuestionGroup _superRoundQuestionGroup;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using GalaSoft.MvvmLight;
 using OwnGame.Commands;
 using OwnGame.Messages;
@@ -19,6 +20,8 @@ namespace OwnGame.ViewModels
 
             MessengerInstance.Register<LoadQuestionMessage>(this, OnLoadQuestion);
             MessengerInstance.Register<UnloadQuestionMessage>(this, OnUnloadQuestion);
+
+            MessengerInstance.Register<SupperRoundStartedMessage>(this, OnSupperRoundStarted);
         }
 
         #region Messages
@@ -37,9 +40,39 @@ namespace OwnGame.ViewModels
                 result.Activate(message.Content.Cost);
             }
         }
+
+        private void OnSupperRoundStarted(SupperRoundStartedMessage message)
+        {
+            int place = 0;
+            int currentScore = 0;
+            foreach (var result in CommandResults.OrderByDescending(rec => rec.Score))
+            {
+                if (place > 3)
+                {
+                    result.Disable();
+                }
+                else
+                {
+                    if (currentScore != result.Score)
+                    {
+                        place++;
+                        if (place > 3)
+                        {
+                            result.Disable();
+                        }
+
+                        currentScore = result.Score;
+                    }
+                }
+            }
+
+            IsScoreCanbeChanged = true;
+        }
         #endregion
 
         private ObservableCollection<CommandResultViewModel> _commandResults;
+        private bool _isScoreCanbeChanged;
+
         public ObservableCollection<CommandResultViewModel> CommandResults
         {
             get { return _commandResults; }
@@ -47,6 +80,17 @@ namespace OwnGame.ViewModels
             {
                 _commandResults = value;
                 RaisePropertyChanged(() => CommandResults);
+            }
+        }
+
+        public bool IsScoreCanbeChanged
+        {
+            get {
+                return _isScoreCanbeChanged;
+            }
+            private set {
+                _isScoreCanbeChanged = value;
+                RaisePropertyChanged(() => IsScoreCanbeChanged);
             }
         }
 

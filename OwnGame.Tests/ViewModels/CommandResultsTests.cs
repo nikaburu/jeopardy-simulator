@@ -22,7 +22,7 @@ namespace OwnGame.Tests.ViewModels
             //Assert
             Assert.IsTrue(viewModel.CommandResults.Count == 5);
             Assert.IsTrue(viewModel.CommandResults.All(rec => rec.Score == 0));
-            Assert.IsTrue(viewModel.CommandResults.All(rec => !rec.IsActive));
+            Assert.IsTrue(viewModel.CommandResults.All(rec => !rec.IsActivated));
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@ namespace OwnGame.Tests.ViewModels
 
             //Assert
             Assert.IsTrue(viewModel.CommandResults.All(rec => rec.CurrentBet == question.Cost));
-            Assert.IsTrue(viewModel.CommandResults.All(rec => rec.IsActive));
+            Assert.IsTrue(viewModel.CommandResults.All(rec => rec.IsActivated));
         }
 
         [TestMethod]
@@ -54,7 +54,46 @@ namespace OwnGame.Tests.ViewModels
             Messenger.Default.Send(new UnloadQuestionMessage());
 
             //Assert
-            Assert.IsTrue(viewModel.CommandResults.All(rec => !rec.IsActive));
+            Assert.IsTrue(viewModel.CommandResults.All(rec => !rec.IsActivated));
         }
+        
+        [TestMethod]
+        public void TestWhenSuperRoundMessageTriggeredThenStayOnlyTopThreeCommands()
+        {
+            //Assign
+            CommandResultsViewModel viewModel = new CommandResultsViewModel();
+            viewModel.InitializeCommands(5);
+            for (int index = 0; index < viewModel.CommandResults.Count; index++)
+            {
+                CommandResultViewModel command = viewModel.CommandResults[index];
+                command.AddScore(index + 1);
+            }
+
+            //Act
+            Messenger.Default.Send(new SupperRoundStartedMessage());
+
+            //Assert
+            Assert.IsTrue(viewModel.CommandResults.Count(rec => !rec.IsDisabled) == 3);
+            Assert.IsTrue(viewModel.IsScoreCanbeChanged);
+        }
+        
+        [TestMethod]
+        public void TestWhenSuperRoundMessageTriggeredThenStayOnlyTopThreeByScoreCommand()
+        {
+            //Assign
+            CommandResultsViewModel viewModel = new CommandResultsViewModel();
+            viewModel.InitializeCommands(5);
+            foreach (CommandResultViewModel command in viewModel.CommandResults)
+            {
+                command.AddScore(100);
+            }
+
+            //Act
+            Messenger.Default.Send(new SupperRoundStartedMessage());
+
+            //Assert
+            Assert.IsTrue(viewModel.CommandResults.Count(rec => !rec.IsDisabled) == 5);
+        }
+        
     }
 }

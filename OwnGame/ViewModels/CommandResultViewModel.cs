@@ -37,6 +37,12 @@ namespace OwnGame.ViewModels
             #endregion
         }
 
+        public CommandResultViewModel(string name, bool isActivated, bool isDisabled) : this(name)
+        {
+            IsActivated = isActivated;
+            IsDisabled = isDisabled;
+        }
+
         #region Commands
         public ChangeScoreCommand AddScoreCommand { get; private set; }
         public ChangeScoreCommand SubstractScoreCommand { get; private set; }
@@ -48,7 +54,7 @@ namespace OwnGame.ViewModels
         #region Properties
         public string Name { get; private set; }
         private int _score;
-        private bool _isActive;
+        private bool _isActivated;
 
         public int Score
         {
@@ -60,18 +66,20 @@ namespace OwnGame.ViewModels
             }
         }
 
-        public bool IsActive
+        public bool IsActivated
         {
             get {
-                return _isActive;
+                return _isActivated;
             }
             private set {
-                _isActive = value;
-                RaisePropertyChanged(() => IsActive);
+                _isActivated = value;
+                RaisePropertyChanged(() => IsActivated);
             }
         }
 
         private int _currentBet;
+        private bool _isDisabled;
+
         public int CurrentBet
         {
             get { return _currentBet; }
@@ -79,6 +87,17 @@ namespace OwnGame.ViewModels
             {
                 _currentBet = value;
                 RaisePropertyChanged(() => CurrentBet);
+            }
+        }
+
+        public bool IsDisabled
+        {
+            get {
+                return _isDisabled;
+            }
+            private set {
+                _isDisabled = value;
+                RaisePropertyChanged(() => IsDisabled);
             }
         }
 
@@ -101,14 +120,21 @@ namespace OwnGame.ViewModels
 
         public void Activate(int bet)
         {
-            IsActive = true;
+            if (IsDisabled) return;
+            
+            IsActivated = true;
             CurrentBet = bet;
         }
 
         public void Deactivate()
         {
-            IsActive = false;
+            IsActivated = false;
             CurrentBet = 0;
+        }
+
+        public void Disable()
+        {
+            IsDisabled = true;
         }
         #endregion
     }

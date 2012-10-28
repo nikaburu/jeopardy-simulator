@@ -35,5 +35,18 @@ namespace OwnGame.Tests.ViewModels
             //Assert
             Assert.IsTrue(viewModel.Score == prevScore - cost);
         }
+
+        [TestMethod]
+        public void TestActivateWhenDisabledThenDonotActivate()
+        {
+            //Assign
+            CommandResultViewModel viewModel = new CommandResultViewModel("aa", false, true);
+
+            //Act
+            viewModel.Activate(100);
+
+            //Assert
+            Assert.IsTrue(!viewModel.IsActivated);
+        }
     }
 }

@@ -113,6 +113,7 @@
     <Compile Include="Infrastructure\GameController.cs" />
     <Compile Include="Infrastructure\ViewModelLocatorHelper.cs" />
     <Compile Include="Messages\CancelQuestionMessage.cs" />
+    <Compile Include="Messages\SupperRoundStartedMessage.cs" />
     <Compile Include="Messages\GameEndedMessage.cs" />
     <Compile Include="Messages\RoundEndedMessage.cs" />
     <Compile Include="Messages\UnloadQuestionMessage.cs" />

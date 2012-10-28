@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
+using System.Windows.Threading;
 using GalaSoft.MvvmLight.Messaging;
 using OwnGame.Commands.Base;
 using OwnGame.Controls.ViewModels;
@@ -30,15 +32,20 @@ namespace OwnGame.Commands
 
             Messenger.Default.Send(new LoadQuestionMessage(question.Model));
         }
-        
+
         #region Overrides of CommandBase<int>
 
         public override void Execute(int parameter)
         {
-            if (!_viewModel.Questions.Any(rec => rec.Model.Cost == parameter)) 
+            if (!_viewModel.Questions.Any(rec => rec.Model.Cost == parameter))
                 throw new ArgumentOutOfRangeException("parameter " + parameter);
-
-            LoadQuestion(parameter);
+            
+            Dispatcher uiDispather = Dispatcher.CurrentDispatcher;
+            (new Thread(() =>
+                            {
+                                Thread.Sleep(2000);
+                                uiDispather.Invoke(new Action(() => LoadQuestion(parameter)));
+                            })).Start();
         }
 
         #endregion

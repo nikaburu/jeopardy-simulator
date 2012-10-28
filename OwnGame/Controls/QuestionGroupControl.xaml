@@ -4,68 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Class="OwnGame.Controls.QuestionGroupControl" 
-             mc:Ignorable="d"
+             mc:Ignorable="d" DataContext="{Binding Path=QuestionTable.QuestionGroupList, Source={StaticResource Locator}}"
              d:DesignHeight="500" d:DesignWidth="600">
-    <UserControl.Resources>
-        <Style x:Key="QuestionButton" TargetType="{x:Type Button}">
-            <Setter Property="FontSize" Value="48" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="ContentTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" Foreground="White">
-                            <TextBlock.Effect>
-                                <DropShadowEffect Color="#FF1720A1"/>
-                            </TextBlock.Effect>
-                        </TextBlock>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid x:Name="grid">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="IsAnsweredGroup">
-                                    <VisualState x:Name="Answered">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="contentPresenter">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="NotAnswered"/>
-                                </VisualStateGroup>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="MouseOver"/>
-                                    <VisualState x:Name="Pressed" />
-                                	<VisualState x:Name="Disabled"/>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <i:Interaction.Triggers>
-                                <ei:DataTrigger Value="False" Binding="{Binding IsAnswered}">
-                                    <ei:GoToStateAction StateName="NotAnswered"/>
-                                </ei:DataTrigger>
-                                <ei:DataTrigger Value="True" Binding="{Binding IsAnswered}">
-                                    <ei:GoToStateAction StateName="Answered"/>
-                                </ei:DataTrigger>
-                            </i:Interaction.Triggers>
-                            <Border x:Name="border" Width="Auto" Height="Auto" Cursor="Hand" BorderBrush="White" BorderThickness="1,1,0,1" >
-                                <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Border>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
-    <UserControl.DataContext>
-        <Binding Path="QuestionTable.QuestionGroupList" Source="{StaticResource Locator}"/>
-    </UserControl.DataContext>
     <ItemsControl ItemsSource="{Binding}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -119,7 +59,7 @@
                                 <Button Content="{Binding Model.Cost}"  
                 						ToolTip="{Binding Text}"
                                         Style="{StaticResource QuestionButton}"
-                                         
+                                        Command="{Binding Path=DataContext.LoadQuestionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                         CommandParameter="{Binding Model.Cost}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

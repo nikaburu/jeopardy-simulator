@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" xmlns:Custom="http://www.galasoft.ch/mvvmlight">
     <!-- Resource dictionary entries should be defined here. -->
     <Style TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="White"/>
@@ -50,6 +50,67 @@
                             </ContentPresenter.ContentTemplate>
                         </ContentPresenter>
                     </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="QuestionButton" TargetType="{x:Type Button}">
+        <Setter Property="FontSize" Value="48" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" Foreground="{TemplateBinding OpacityMask}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="BlinkStoryboard" RepeatBehavior="0:0:2" AutoReverse="True">
+                            <ColorAnimation From="Transparent" To="Yellow" Duration="0:0:0.5" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border"/>
+                            <ColorAnimation From="White" To="Blue" Duration="0:0:0.2" Storyboard.TargetProperty="(UIElement.OpacityMask).(SolidColorBrush.Color)" Storyboard.TargetName="contentPresenter" />
+                            <ColorAnimation From="Black" To="White" Duration="0:0:0.2" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Color)" Storyboard.TargetName="contentPresenter" />
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid x:Name="grid">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="IsAnsweredGroup">
+                                <VisualState x:Name="Answered">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="contentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="NotAnswered"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <i:Interaction.Triggers>
+                            <ei:DataTrigger Value="False" Binding="{Binding IsAnswered}">
+                                <ei:GoToStateAction StateName="NotAnswered"/>
+                            </ei:DataTrigger>
+                            <ei:DataTrigger Value="True" Binding="{Binding IsAnswered}">
+                                <ei:GoToStateAction StateName="Answered"/>
+                            </ei:DataTrigger>
+                        </i:Interaction.Triggers>
+                        <Border x:Name="border" Width="Auto" Height="Auto" Cursor="Hand" BorderBrush="White" BorderThickness="1,1,0,1" Background="Transparent" >
+                            <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" OpacityMask="White" >
+                        		<ContentPresenter.Effect>
+                        			<DropShadowEffect Color="#FF1720A1"/>
+                        		</ContentPresenter.Effect>
+                        	</ContentPresenter>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="UIElement.MouseLeftButtonDown" SourceName="border">
+                            <BeginStoryboard Storyboard="{StaticResource BlinkStoryboard}"/>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

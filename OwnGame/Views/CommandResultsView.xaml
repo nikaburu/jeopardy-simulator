@@ -13,7 +13,7 @@
         <ItemsControl ItemsSource="{Binding CommandResults}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>                        
+                    <StackPanel Visibility="{Binding IsDisabled, Converter={StaticResource BoolToVisibilityInvertedConverter}}">
                     	<TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="21.333" />
                         <Border Background="Black" BorderBrush="DarkBlue" BorderThickness="2">
                             <TextBlock Text="{Binding Score}" FontSize="21.333" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFB40000" />

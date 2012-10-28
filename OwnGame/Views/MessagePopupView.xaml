@@ -35,7 +35,7 @@
             </i:EventTrigger>
         </i:Interaction.Triggers>
         <Viewbox Grid.Column="1" Grid.Row="1">
-            <TextBlock TextWrapping="Wrap" Text="{Binding Text}" FontSize="48" FontWeight="Bold" FontStyle="Italic" TextDecorations="{x:Null}" HorizontalAlignment="Center" TextAlignment="Center">
+            <TextBlock TextWrapping="Wrap" Text="{Binding Text}" FontSize="48" FontWeight="Bold" FontStyle="Italic" FontFamily="Calibri" TextDecorations="{x:Null}" HorizontalAlignment="Center" TextAlignment="Center">
     			<i:Interaction.Triggers>
     				<ei:DataTrigger Binding="{Binding IsActive}" Value="True">
     					<ei:GoToStateAction StateName="Opened"/>

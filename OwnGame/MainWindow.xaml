@@ -25,7 +25,7 @@
             <Views:CommandResultsView />
         </Border>
         <Views:MessagePopupView Grid.ColumnSpan="4" />
-        <Viewbox Width="300" x:Name="resultsView" Visibility="Collapsed" Grid.Column="1" Grid.ColumnSpan="2">
+        <Viewbox Width="Auto" x:Name="resultsView" Visibility="Collapsed" Grid.Column="1" Grid.ColumnSpan="2">
             <Views:TotalResultsView />
         </Viewbox>        
     </Grid>

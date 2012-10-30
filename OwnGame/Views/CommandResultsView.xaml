@@ -18,7 +18,7 @@
                         <Border Background="Black" BorderBrush="DarkBlue" BorderThickness="2">
                             <TextBlock Text="{Binding Score}" FontSize="21.333" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFB40000" />
                         </Border>
-                        <WrapPanel Margin="10,2" Visibility="{Binding IsActivated, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <WrapPanel Margin="10,2" Visibility="{Binding IsActivated, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center">
                         	<Button Content="+" 
                         		Command="{Binding AddScorePopupCommand}"
                         		CommandParameter="{Binding CurrentBet}" Width="40"/>

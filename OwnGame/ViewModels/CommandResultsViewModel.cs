@@ -37,7 +37,14 @@ namespace OwnGame.ViewModels
         {
             foreach (var result in CommandResults)
             {
-                result.Activate(message.Content.Cost);
+                var cost = message.Content.Cost;
+                if (cost == 0)
+                {
+                    var maxScore = CommandResults.Max(rec => rec.Score);
+                    cost = maxScore != result.Score ? maxScore - result.Score : maxScore;
+                }
+
+                result.Activate(cost);
             }
         }
 

@@ -72,6 +72,7 @@ namespace OwnGame.Infrastructure
 
             Messenger.Default.Register<UnloadQuestionMessage>(this, OnUnloadQuestion);
             _superRoundQuestionGroup = ViewModelLocator.QuestionService.GetQuestionGroupList(3).First();
+            foreach (var question in _superRoundQuestionGroup.Questions) question.Cost = 0;
 
             OnUnloadQuestion(null);
 

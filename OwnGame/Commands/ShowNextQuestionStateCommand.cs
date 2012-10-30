@@ -28,7 +28,7 @@ namespace OwnGame.Commands
             switch (questionState)
             {
                 case QuestionState.PreQuestionShown:
-                    SetViewModelContent("Раскрыть вопрос", string.Format("{0} - {1}", _viewModel.Model.QuestionGroup.Name, _viewModel.Model.Cost));
+                    SetViewModelContent("Раскрыть вопрос", string.Format(_viewModel.Model.Cost != 0 ? "{0} - {1}" : "{0}", _viewModel.Model.QuestionGroup.Name, _viewModel.Model.Cost));
                     break;
                 case QuestionState.QuestionShown:
                     SetViewModelContent("Раскрыть ответ", _viewModel.Model.Text, _viewModel.Model.TextImage);

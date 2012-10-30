@@ -16,7 +16,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <Utf8Output>true</Utf8Output>
-    <ExpressionBlendVersion>4.0.20901.0</ExpressionBlendVersion>
+    <ExpressionBlendVersion>5.2.30810.0</ExpressionBlendVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -241,6 +241,7 @@
     </Content>
     <Resource Include="Untitled.ico" />
     <Resource Include="Resources\svoja_igra.jpg" />
+    <Resource Include="Resources\economic_chalenge.jpg" />
     <Content Include="Servicies\testImage.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

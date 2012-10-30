@@ -14,10 +14,10 @@
 	</Window.Background>
     <Grid DataContext="{Binding Source={StaticResource Locator}}">
         <Grid.ColumnDefinitions>
-        	<ColumnDefinition Width="10*" />
+        	<ColumnDefinition Width="5*" />
         	<ColumnDefinition Width="550*" />
-        	<ColumnDefinition Width="10*" />
-        	<ColumnDefinition Width="170" />
+        	<ColumnDefinition Width="5*" />
+        	<ColumnDefinition Width="190" />
         </Grid.ColumnDefinitions>
         <Views:QuestionTableView x:Name="questionTableView" Grid.Column="1" />
         <Views:QuestionProcessView x:Name="questionProcessView" Visibility="Collapsed" Grid.Column="1" />

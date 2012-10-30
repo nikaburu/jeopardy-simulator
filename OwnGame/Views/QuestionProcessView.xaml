@@ -25,10 +25,7 @@
         </DockPanel>
         <WrapPanel Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center">
         	<TextBlock Text="{Binding ContentText}" FontSize="64" FontWeight="Bold" TextAlignment="Center" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Calibri" />
-        	<Border Visibility="{Binding IsShowImage, Converter={StaticResource BoolToVisibilityConverter}}" BorderBrush="DarkBlue" BorderThickness="2" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
-        		<Border.Effect>
-        			<DropShadowEffect Color="#FF0F189F"/>
-        		</Border.Effect>
+        	<Border Visibility="{Binding IsShowImage, Converter={StaticResource BoolToVisibilityConverter}}" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
         		<Image Source="{Binding ImageData, Converter={StaticResource ByteToBitmapImageConverter}}" d:LayoutOverrides="GridBox" Width="100" Height="100" MinWidth="300" MinHeight="300" MaxWidth="400" MaxHeight="600" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
         			<Image.Effect>
         				<DropShadowEffect RenderingBias="Quality"/>

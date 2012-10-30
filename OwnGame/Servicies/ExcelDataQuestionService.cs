@@ -13,7 +13,7 @@ namespace OwnGame.Servicies
     {
         #region Implementation of IQuestionService
         private readonly Random _random = new Random();
-        private readonly string _folder = Environment.CurrentDirectory + @"\Servicies\Questions\";
+        private readonly string _folder = Environment.CurrentDirectory + @"\ContentData\";
         private const string Level1FileName = "level1.xls";
         private const string Level2FileName = "level2.xls";
         private const string Level3FileName = "level3.xls";

@@ -11,6 +11,7 @@
     		<RowDefinition Height="250*"/>
     		<RowDefinition Height="10*"/>
     	</Grid.RowDefinitions>
+        <CheckBox Grid.Row="0" IsChecked="{Binding IsSkipRound}" />
         <Viewbox Grid.Row="1" HorizontalAlignment="Left">
 			<Controls:QuestionGroupControl DataContext="{Binding QuestionGroupList}"  Height="791.357" Width="972.819" HorizontalAlignment="Left" VerticalAlignment="Top" />    	
 		</Viewbox>

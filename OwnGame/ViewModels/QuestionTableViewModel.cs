@@ -36,13 +36,25 @@ namespace OwnGame.ViewModels
 
         private void OnUnloadQuestion(UnloadQuestionMessage obj)
         {
-            if (QuestionGroupList.All(group => group.Questions.All(question => question.IsAnswered)))
+            if (!IsSkipRound)
             {
-                MessengerInstance.Send(new RoundEndedMessage());
+                if (QuestionGroupList.All(group => group.Questions.All(question => question.IsAnswered)))
+                {
+                    MessengerInstance.Send(new RoundEndedMessage());
+                }
+            }
+            else
+            {
+                if (QuestionGroupList.Any(group => group.Questions.Any(question => question.IsAnswered)))
+                {
+                    MessengerInstance.Send(new RoundEndedMessage());
+                }
             }
         }
 
         private ObservableCollection<QuestionGroupViewModel> _questionGroupList;
+        private bool _isSkipRound;
+
         public ObservableCollection<QuestionGroupViewModel> QuestionGroupList
         {
             get { return _questionGroupList; }
@@ -54,5 +66,15 @@ namespace OwnGame.ViewModels
         }
 
         public CommandBase<Func<IQuestionService, IEnumerable<QuestionGroup>>> LoadDataCommand { get; private set; }
+
+        public bool IsSkipRound
+        {
+            get { return _isSkipRound; }
+            set
+            {
+                _isSkipRound = value;
+                RaisePropertyChanged(() => IsSkipRound);
+            }
+        }
     }
 }

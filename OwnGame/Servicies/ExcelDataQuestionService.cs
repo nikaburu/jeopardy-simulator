@@ -52,9 +52,9 @@ namespace OwnGame.Servicies
                                        {
                                            Id = _random.Next(int.MaxValue),
                                            Text = ((Excel.Range)columns.Columns[1]).Value2.ToString(),
-                                           TextImage = columns.Columns[2] ==null ? null : File.ReadAllBytes(_folder+((Excel.Range)columns.Columns[2]).Value2.ToString()),
+                                           TextImage = ((Excel.Range)columns.Columns[2]).Value2 == null ? null : File.ReadAllBytes(_folder + ((Excel.Range)columns.Columns[2]).Value2),
                                            Answer = ((Excel.Range)columns.Columns[3]).Value2.ToString(),
-                                           AnswerImage = String.IsNullOrEmpty(((Excel.Range)columns.Columns[4]).Value2.ToString()) ? null : File.ReadAllBytes(_folder + ((Excel.Range)columns.Columns[4]).Value2.ToString()),
+                                           AnswerImage = ((Excel.Range)columns.Columns[4]).Value2 == null ? null : File.ReadAllBytes(_folder + ((Excel.Range)columns.Columns[4]).Value2),
                                            Cost = int.Parse(((Excel.Range)columns.Columns[5]).Value2.ToString())
                                        });
                     i++;

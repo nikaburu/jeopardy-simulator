@@ -43,14 +43,6 @@ namespace OwnGame.Infrastructure
             switch (CurrentRound)
             {
                 case GameRound.FirstRound:
-                    InitializeSecondRound();
-                    CurrentRound = GameRound.SecondRound;
-                    break;
-                case GameRound.SecondRound:
-                    InitializeSuperRound();
-                    CurrentRound = GameRound.SuperRound;
-                    break;
-                case GameRound.SuperRound:
                     ShowResults();
                     CurrentRound = GameRound.Results;
                     break;

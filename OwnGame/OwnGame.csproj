@@ -219,6 +219,24 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="ContentData\2.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ContentData\3.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ContentData\4.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ContentData\5.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ContentData\6.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ContentData\1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ContentData\level2.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -242,6 +260,9 @@
     <Resource Include="Untitled.ico" />
     <Resource Include="Resources\svoja_igra.jpg" />
     <Resource Include="Resources\economic_chalenge.jpg" />
+    <Content Include="ContentData\zadacha.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Servicies\testImage.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

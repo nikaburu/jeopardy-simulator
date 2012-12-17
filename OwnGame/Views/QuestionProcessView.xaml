@@ -24,9 +24,9 @@
             <Button Content="{Binding NextStateActionText}" DockPanel.Dock="Right" HorizontalAlignment="Right" Command="{Binding GoToNextStateCommand}" />
         </DockPanel>
         <WrapPanel Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center">
-        	<TextBlock Text="{Binding ContentText}" FontSize="64" FontWeight="Bold" TextAlignment="Center" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Calibri" />
+            <TextBlock Text="{Binding ContentText}" FontSize="64" FontWeight="Bold" TextAlignment="Center" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Calibri" MouseWheel="Resizeble_MouseWheel" />
         	<Border Visibility="{Binding IsShowImage, Converter={StaticResource BoolToVisibilityConverter}}" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
-        		<Image Source="{Binding ImageData, Converter={StaticResource ByteToBitmapImageConverter}}" d:LayoutOverrides="GridBox" Width="100" Height="100" MinWidth="300" MinHeight="300" MaxWidth="400" MaxHeight="600" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+                <Image Source="{Binding ImageData, Converter={StaticResource ByteToBitmapImageConverter}}" d:LayoutOverrides="GridBox" Width="300" Height="300" MinWidth="300" MinHeight="300" MaxWidth="400" MaxHeight="600" ScrollViewer.VerticalScrollBarVisibility="Disabled" MouseWheel="Resizeble_MouseWheel" Stretch="Fill">
         			<Image.Effect>
         				<DropShadowEffect RenderingBias="Quality"/>
         			</Image.Effect>

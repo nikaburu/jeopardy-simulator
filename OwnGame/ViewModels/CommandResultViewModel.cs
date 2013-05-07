@@ -83,7 +83,7 @@ namespace OwnGame.ViewModels
         public int CurrentBet
         {
             get { return _currentBet; }
-            private set
+            set
             {
                 _currentBet = value;
                 RaisePropertyChanged(() => CurrentBet);

@@ -5,6 +5,6 @@ namespace JeopardySimulator.Ui
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
-	public class App : Application
+	public partial class App : Application
 	{}
 }

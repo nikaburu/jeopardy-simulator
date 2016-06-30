@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="JeopardySimulator.Ui.Views.TotalResultsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:JeopardySimulator.Ui.Converters"
+             mc:Ignorable="d" DataContext="{Binding TotalResults, Source={StaticResource Locator}}"
+             d:DesignHeight="300" d:DesignWidth="300">
+	<UserControl.Resources>
+		<converters:BoolToVisibilityInvertedConverter x:Key="BoolToVisibilityInvertedConverter" />
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="50" />
+		</Grid.RowDefinitions>
+		<ItemsControl ItemsSource="{Binding CommandResults}" Grid.Row="0"
+		              DataContext="{Binding CommandResults, Source={StaticResource Locator}}" Margin="0,0,0,30">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel IsItemsHost="True" />
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Visibility="{Binding IsDisabled, Converter={StaticResource BoolToVisibilityInvertedConverter}}"
+					            Margin="10,0,10,0">
+						<TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="21.333" />
+						<Border Background="Black" BorderBrush="DarkBlue" BorderThickness="2">
+							<TextBlock Text="{Binding Score}" FontSize="21.333" FontWeight="Bold" HorizontalAlignment="Center"
+							           VerticalAlignment="Center" Foreground="#FFB40000" />
+						</Border>
+					</StackPanel>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+		<Button Content="Следующий раунд" Command="{Binding NextRoundCommand}"
+		        Visibility="{Binding IsGameEnded, Converter={StaticResource BoolToVisibilityInvertedConverter}}" Grid.Row="1"
+		        Margin="23,0,27,0" Height="50" HorizontalAlignment="Center" />
+	</Grid>
+</UserControl>
